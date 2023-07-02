@@ -102,7 +102,14 @@ async function fetchDataAndRenderGraph() {
 
     cy.on('tap', 'edge', function (evt) {
       const edge = evt.target;
-      console.log(edge.id());
+      if (removeRelation) {
+        const approve = confirm('Are you sure you want to remove this relation?');
+        if (approve) {
+          const edgeToRemove = cy.getElementById(edge.id());
+          edgeToRemove.remove();
+        }
+        removeRelation = false;
+      }
     });
 
     cy.on('dragfreeon', 'node', function (evt) {

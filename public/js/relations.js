@@ -1,8 +1,14 @@
 let addRelation = false;
+let removeRelation = false;
+
 let relation = [];
 document.getElementById("addRelationButton").addEventListener("click", function () {
   document.getElementById("addRelationButton").disabled = true;
   addRelation = true;
+});
+document.getElementById("removeRelationButton").addEventListener("click", function () {
+  document.getElementById("removeRelationButton").disabled = true;
+  removeRelation = true;
 });
 
 function addNewRelation (id) {
@@ -14,9 +20,4 @@ function addNewRelation (id) {
     addRelation = false;
     console.log(response);
   }
-}
-
-function removeRelation (id) {
-/*   const response = axios.delete(`${apiUrl}/curriculums/${version}/relations/${id}`);
-  console.log(response); */
 }
