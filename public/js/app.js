@@ -66,35 +66,46 @@ async function fetchDataAndRenderGraph() {
           }
         }
       ],
-    
+
       layout: {
         name: 'preset',
       },
     });
-    
-    cy.on('tap', 'node', function(evt){
-      const node = evt.target;
-    
-      cy.elements().style({'background-color': '#666', 'line-color': '#ccc', 'target-arrow-color': '#ccc'});
-    
-      node.style('background-color', '#f00');
-      node.predecessors().style({'background-color': '#0f0', 'line-color': '#0f0', 'target-arrow-color': '#0f0'});
-    
-      const description = node.data('description');
-      const learningOutcomes = node.data('learningOutcomes');
-      alert('Description: ' + description + '\nLearning outcomes: ' + learningOutcomes.join(', '));
+
+    cy.on('tap', 'node', function (evt) {
+      if (!addRelation) {
+        const node = evt.target;
+
+        cy.elements().style({ 'background-color': '#666', 'line-color': '#ccc', 'target-arrow-color': '#ccc' });
+
+        node.style('background-color', '#f00');
+        node.predecessors().style({ 'background-color': '#0f0', 'line-color': '#0f0', 'target-arrow-color': '#0f0' });
+
+        const description = node.data('description');
+        const learningOutcomes = node.data('learningOutcomes');
+        alert('Description: ' + description + '\nLearning outcomes: ' + learningOutcomes.join(', '));
+      } else {
+        const node = evt.target;
+        const subjectId = node.id();
+        addNewRelation(subjectId);
+      }
     });
-    
-    cy.on('mouseover', 'node', function(evt){
+
+    cy.on('mouseover', 'node', function (evt) {
       const node = evt.target;
-    
+
       const volume = node.data('volume');
       const category = node.data('category');
       const position = node.position();
       console.log(volume, category, position);
     });
 
-    cy.on('dragfreeon', 'node', function(evt){
+    cy.on('tap', 'edge', function (evt) {
+      const edge = evt.target;
+      console.log(edge.id());
+    });
+
+    cy.on('dragfreeon', 'node', function (evt) {
       const node = evt.target;
       updatePosition(node.data('id'), node.position());
     });

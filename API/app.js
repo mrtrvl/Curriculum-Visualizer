@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const curriculumService = require('./services/curriculumService');
 const subjectsService = require('./services/subjectsService');
+const relationsService = require('./services/relationsService');
 
 const port = 4000;
 const app = express();
@@ -37,6 +38,13 @@ app.post('/api/v1/curriculums/:version/subjects/position', async (req, res) => {
   const { id, position } = req.body;
   subjectsService.updatePosition(version, id, position);
   return res.status(200).json();
+});
+
+app.post('/api/v1/curriculums/:version/relations', async (req, res) => {
+  const { version } = req.params;
+  const relation = req.body;
+  const newRelation = await relationsService.addRelation(version, relation);
+  return res.status(201).json(newRelation);
 });
 
 app.listen(port, () => {
