@@ -11,7 +11,7 @@ const curriculum = {
       semester: 1,
       objective: '',
       description: '',
-      topics: [],
+      topics: [1, 2],
     },
     {
       id: 2,
