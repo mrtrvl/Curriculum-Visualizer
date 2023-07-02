@@ -1,10 +1,22 @@
+window.onload = function() {
+  const categories = subjects.map(subject => subject.data.category);
+  const uniqueCategories = [...new Set(categories)];
+  const categoriesSelect = document.getElementById('categories');
+  uniqueCategories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.text = category;
+    categoriesSelect.appendChild(option);
+  });
+};
+
 const cy = cytoscape({
   container: document.getElementById('cy'),
   elements: {
     nodes: subjects,
     edges: relations,
   },
-  style: [ // the stylesheet for the graph
+  style: [
     {
       selector: 'node[mandatory = "true"]',
       style: {
