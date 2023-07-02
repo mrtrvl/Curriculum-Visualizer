@@ -57,9 +57,44 @@ const relations = [
   },
   {
     data: {
-      id: 10,
-      source: 'Programmeerimine I',
-      target: 'Programmeerimine III'
+      id: 11,
+      source: 'Kasutajakogemuse disain',
+      target: 'Kasutajaliideste disain'
+    }
+  },
+  {
+    data: {
+      id: 12,
+      source: 'Kujundusgraafika',
+      target: 'Kujundusgraafika II'
+    }
+  },
+  {
+    data: {
+      id: 13,
+      source: 'Kujundusgraafika',
+      target: 'Disaini alused'
+    }
+  },
+  {
+    data: {
+      id: 14,
+      source: 'Disaini alused',
+      target: 'Kasutajakogemuse disain'
+    }
+  },
+  {
+    data: {
+      id: 15,
+      source: 'Veebiprogrammeerimine',
+      target: 'Mobiilirakenduste arendamine'
+    }
+  },
+  {
+    data: {
+      id: 16,
+      source: 'Veebiraamistikud',
+      target: 'Mobiilirakenduste arendamine'
     }
   },
 /*       {

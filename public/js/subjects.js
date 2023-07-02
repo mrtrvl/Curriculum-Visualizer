@@ -100,6 +100,96 @@ const subjects = [
   },
   {
     data: {
+      id: 'Arvutivõrgud ja andmeside',
+      volume: 4,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Riistvara ja operatsioonisüsteemide alused',
+      volume: 4,
+      mandatory: 'true',
+      semester: 4,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Kasutajakogemuse disain',
+      volume: 4,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Kujundusgraafika',
+      volume: 3,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Andmeturve',
+      volume: 3,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Serverihaldus',
+      volume: 4,
+      mandatory: 'false',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Kujundusgraafika II',
+      volume: 5,
+      mandatory: 'false',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Kasutajaliideste disain',
+      volume: 4,
+      mandatory: 'false',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Disaini alused',
+      volume: 4,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
+      id: 'Mobiilirakenduste arendamine',
+      volume: 4,
+      mandatory: 'true',
+      semester: null,
+      category: 'Eriala ained',
+    }
+  },
+  {
+    data: {
       id: 'Õppimine kõrgkoolis',
       volume: 6,
       mandatory: 'true',
