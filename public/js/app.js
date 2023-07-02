@@ -1,6 +1,7 @@
 const apiUrl = 'http://localhost:4000/api/v1';
 let subjects = [];
 let relations = [];
+let cy;
 
 async function fetchDataAndRenderGraph() {
   try {
@@ -11,10 +12,9 @@ async function fetchDataAndRenderGraph() {
     }
 
     const data = await response.json();
-    console.log(data);
     subjects = data.subjects;
     relations = data.relations;
-    const cy = cytoscape({
+    cy = cytoscape({
       container: document.getElementById('cy'),
       elements: {
         nodes: subjects,
@@ -101,7 +101,7 @@ async function fetchDataAndRenderGraph() {
 
 fetchDataAndRenderGraph();
 
-window.onload = function() {
+/* window.onload = function() {
   const categories = subjects.map(subject => subject.data.category);
   const uniqueCategories = [...new Set(categories)];
   const categoriesSelect = document.getElementById('categories');
@@ -111,5 +111,5 @@ window.onload = function() {
     option.text = category;
     categoriesSelect.appendChild(option);
   });
-};
+}; */
 
