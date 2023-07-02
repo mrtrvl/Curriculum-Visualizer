@@ -17,7 +17,6 @@ document.getElementById('add-subject-form').addEventListener('submit', async fun
     }
     
     const newSubject = await response.data;
-    console.log(newSubject);
     cy.add({
       data: {
         id: newSubject.id,

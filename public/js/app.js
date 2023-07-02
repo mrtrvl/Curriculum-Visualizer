@@ -68,9 +68,7 @@ async function fetchDataAndRenderGraph() {
       ],
     
       layout: {
-        name: 'dagre',
-        rankDir: 'TD',
-        nodeSep: 300
+        name: 'preset',
       },
     });
     
@@ -92,8 +90,15 @@ async function fetchDataAndRenderGraph() {
     
       const volume = node.data('volume');
       const category = node.data('category');
-      console.log(volume, category);
+      const position = node.position();
+      console.log(volume, category, position);
     });
+
+    cy.on('dragfreeon', 'node', function(evt){
+      const node = evt.target;
+      updatePosition(node.data('id'), node.position());
+    });
+
   } catch (error) {
     console.error('Error:', error);
   }

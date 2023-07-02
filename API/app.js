@@ -32,6 +32,13 @@ app.post('/api/v1/curriculums/:version/subjects', async (req, res) => {
   return res.status(201).json(newSubject);
 });
 
+app.post('/api/v1/curriculums/:version/subjects/position', async (req, res) => {
+  const { version } = req.params;
+  const { id, position } = req.body;
+  subjectsService.updatePosition(version, id, position);
+  return res.status(200).json();
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening at http://localhost:${port}`);

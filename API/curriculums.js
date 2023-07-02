@@ -17,6 +17,10 @@ const curriculums = [
             'oskab programmikoodi töötlemiseks kasutada sobivat keskkonda, programmikoodi siluda ja testida',
           ],
         },
+        position: {
+          x: -148.63225655926198,
+          y: -572.1323848377069,
+        },
       },
       {
         data: {
@@ -27,6 +31,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 378.7068454797633,
+          y: -565.0061807560984,
         },
       },
       {
@@ -39,6 +47,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -120.12744023282819,
+          y: -361.4003498529999,
+        },
       },
       {
         data: {
@@ -49,6 +61,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -416.3739241968365,
+          y: -392.9592536429801,
         },
       },
       {
@@ -61,6 +77,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 166.95678134054077,
+          y: -581.2946472283463,
+        },
       },
       {
         data: {
@@ -71,6 +91,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -539.555451893211,
+          y: -293.1923965004619,
         },
       },
       {
@@ -83,6 +107,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -673.9353002892562,
+          y: -601.6552303186562,
+        },
       },
       {
         data: {
@@ -93,6 +121,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -108.9291195331576,
+          y: -188.33539358536612,
         },
       },
       {
@@ -105,6 +137,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -299.3005714275549,
+          y: -345.111883380752,
+        },
       },
       {
         data: {
@@ -115,6 +151,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -246.36305539274923,
+          y: -139.4699941686225,
         },
       },
       {
@@ -127,6 +167,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -669.8631836711941,
+          y: 142.52408163216896,
+        },
       },
       {
         data: {
@@ -137,6 +181,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 746.2153702598562,
+          y: -592.4929679280168,
         },
       },
       {
@@ -149,6 +197,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -425.513740941078,
+          y: -586.7628974947813,
+        },
       },
       {
         data: {
@@ -159,6 +211,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -9.892405078171446,
+          y: -94.51553575008776,
         },
       },
       {
@@ -171,6 +227,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 86.8211609039261,
+          y: -374.2923208849744,
+        },
       },
       {
         data: {
@@ -181,6 +241,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 290.4434278902602,
+          y: -233.29426896081182,
         },
       },
       {
@@ -193,6 +257,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 641.6298177285082,
+          y: -40.18188606690911,
+        },
       },
       {
         data: {
@@ -203,6 +271,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 142.5577501017659,
+          y: -126.36232600705148,
         },
       },
       {
@@ -215,6 +287,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -45.596411126726345,
+          y: 103.40794036323074,
+        },
       },
       {
         data: {
@@ -225,6 +301,10 @@ const curriculums = [
           category: 'Eriala ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: -42.92723402332556,
+          y: -267.5588426744493,
         },
       },
       {
@@ -237,6 +317,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: -697.8495729240639,
+          y: -174.6198766264827,
+        },
       },
       {
         data: {
@@ -247,6 +331,10 @@ const curriculums = [
           category: 'Üleülikoolilised ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 548.6311169107616,
+          y: -586.1386126142331,
         },
       },
       {
@@ -259,6 +347,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 901.6001433637799,
+          y: -306.23352402596475,
+        },
       },
       {
         data: {
@@ -269,6 +361,10 @@ const curriculums = [
           category: 'Üleülikoolilised ained',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 758.1474543008437,
+          y: -417.9609204190309,
         },
       },
       {
@@ -281,6 +377,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 794.1858307154296,
+          y: -194.549426319443,
+        },
       },
       {
         data: {
@@ -292,6 +392,10 @@ const curriculums = [
           description: '',
           learningOutcomes: [],
         },
+        position: {
+          x: 401.8284163065995,
+          y: -119.30707951842206,
+        },
       },
       {
         data: {
@@ -302,6 +406,10 @@ const curriculums = [
           category: 'Praktika',
           description: '',
           learningOutcomes: [],
+        },
+        position: {
+          x: 430.52046851707604,
+          y: 55.1667051300721,
         },
       },
     ],
@@ -432,22 +540,6 @@ const curriculums = [
           target: 'Praktika I',
         },
       },
-      /*       {
-      data: {
-        id: 11,
-        source: 'Programmeerimine II',
-        target: 'Andmebaasid II',
-        cooperation: 'true',
-      }
-    }, */
-      /*       {
-      data: {
-        id: 12,
-        source: 'Programmeerimine II',
-        target: 'Veebiraamistikud',
-        cooperation: 'true',
-      }
-    }, */
     ],
     learningOutcomes: [
       {
