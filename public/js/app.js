@@ -3,6 +3,21 @@ let subjects = [];
 let relations = [];
 let cy;
 
+function showData(node) {
+  const data = node.data();
+  const { id, volume, category, description, mandatory, parent, uuid } = data;
+  console.log(data);
+  if (volume) {
+    document.getElementById('name').value = id;
+    document.getElementById('volume').value = volume;
+    document.getElementById('category').value = category;
+    document.getElementById('description').value = description;
+    document.getElementById('mandatory').checked = mandatory;
+    document.getElementById('parent').value = parent;
+    document.getElementById('uuid').innerText = uuid;
+  }
+}
+
 async function fetchDataAndRenderGraph() {
   try {
     const response = await fetch(`${apiUrl}/curriculums?version=RIF23`);
@@ -22,10 +37,15 @@ async function fetchDataAndRenderGraph() {
       },
       style: [
         {
+          selector: 'node',
+          style: {
+            'label': 'data(id)',
+          }
+        },
+        {
           selector: 'node[mandatory = "true"]',
           style: {
             'background-color': '#f00',
-            'label': 'data(id)',
             'width': 'mapData(volume, 0, 10, 20, 60)',
             'height': 'mapData(volume, 0, 10, 20, 60)'
           }
@@ -34,15 +54,8 @@ async function fetchDataAndRenderGraph() {
           selector: 'node[mandatory = "false"]',
           style: {
             'background-color': '#666',
-            'label': 'data(id)',
             'width': 'mapData(volume, 0, 10, 20, 60)',
             'height': 'mapData(volume, 0, 10, 20, 60)'
-          }
-        },
-        {
-          selector: 'node',
-          style: {
-            'label': 'data(id)',
           }
         },
         {
@@ -70,6 +83,14 @@ async function fetchDataAndRenderGraph() {
             'target-arrow-color': '#ccc',
             'target-arrow-shape': 'triangle'
           }
+        },
+        {
+          selector: '.highlighted',
+          style: {
+            'background-color': '#0f0',
+            'line-color': '#0f0',
+            'target-arrow-color': '#0f0'
+          }
         }
       ],
 
@@ -81,15 +102,10 @@ async function fetchDataAndRenderGraph() {
     cy.on('tap', 'node', function (evt) {
       if (!addRelation) {
         const node = evt.target;
-
-        cy.elements().style({ 'background-color': '#666', 'line-color': '#ccc', 'target-arrow-color': '#ccc' });
-
-        node.style('background-color', '#f00');
-        node.predecessors().style({ 'background-color': '#0f0', 'line-color': '#0f0', 'target-arrow-color': '#0f0' });
-
-        const description = node.data('description');
-        const learningOutcomes = node.data('learningOutcomes');
-        alert('Description: ' + description + '\nLearning outcomes: ' + learningOutcomes.join(', '));
+        cy.elements().removeClass('highlighted');
+        node.predecessors().addClass('highlighted');
+        node.parent().removeClass('highlighted');
+        showData(node);
       } else {
         const node = evt.target;
         const subjectId = node.id();
@@ -97,14 +113,12 @@ async function fetchDataAndRenderGraph() {
       }
     });
 
-    cy.on('mouseover', 'node', function (evt) {
+/*     cy.on('mouseover', 'node', function (evt) {
       const node = evt.target;
-
       const volume = node.data('volume');
       const category = node.data('category');
       const position = node.position();
-      console.log(volume, category, position);
-    });
+    }); */
 
     cy.on('tap', 'edge', function (evt) {
       const edge = evt.target;
@@ -129,16 +143,3 @@ async function fetchDataAndRenderGraph() {
 }
 
 fetchDataAndRenderGraph();
-
-/* window.onload = function() {
-  const categories = subjects.map(subject => subject.data.category);
-  const uniqueCategories = [...new Set(categories)];
-  const categoriesSelect = document.getElementById('categories');
-  uniqueCategories.forEach(category => {
-    const option = document.createElement('option');
-    option.value = category;
-    option.text = category;
-    categoriesSelect.appendChild(option);
-  });
-}; */
-

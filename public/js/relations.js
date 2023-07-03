@@ -15,9 +15,7 @@ function addNewRelation (id) {
   relation.push(id);
   if (relation.length === 2) {
     document.getElementById("addRelationButton").disabled = false;
-    console.log(relation);
     const response = axios.post(`${apiUrl}/curriculums/${version}/relations`, relation);
     addRelation = false;
-    console.log(response);
   }
 }

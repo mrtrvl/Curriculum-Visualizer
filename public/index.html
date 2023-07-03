@@ -13,20 +13,33 @@
 <body>
 <!--   <select id="categories"></select> -->
   <form id="add-subject-form">
-    <input type="text" id="name" placeholder="Õppeaine nimi">
-    <input type="number" id="volume" placeholder="Aine maht EAP-des">
-    <input type="checkbox" id="mandatory" placeholder="Kohustuslik aine">
+    <p id="uuid"></p>
+    <input type="text" id="name" placeholder="Õppeaine nimi" required>
+    <input type="number" id="volume" placeholder="Aine maht EAP-des" required>
     <label for="mandatory">Kohustuslik aine</label>
-    <input type="number" id="semester" placeholder="Semester">
-    <input type="text" id="category" placeholder="Kategooria">
-    <input type="text" id="description" placeholder="Kirjeldus">
-    <button type="submit">Add Subject</button>
+    <input type="checkbox" id="mandatory" placeholder="Kohustuslik aine">
+    <select id="parent" required>
+      <option value="1. semester">1. semester</option>
+      <option value="2. semester">2. semester</option>
+      <option value="3. semester">3. semester</option>
+      <option value="4. semester">4. semester</option>
+      <option value="5. semester">5. semester</option>
+      <option value="6. semester">6. semester</option>
+    </select>
+    <select id="category" required>
+      <option value="Erialaained">Erialaained</option>
+      <option value="Praktika">Praktika</option>
+      <option value="Kohustuslikud ained">Üleülikoolilised ained</option>
+    </select>
+    <textarea type="text" id="description" placeholder="Kirjeldus"></textarea>
+    <button type="submit" id="addSubject">Add Subject</button>
+    <button type="submit" id="updateSubject">Update Subject</button>
   </form>
   <button id="addRelationButton">Add Relation</button>
   <button id="removeRelationButton">Remove Relation</button>
   <div id="cy"></div>
   <script src="./js/app.js"></script>
-  <script src="./js/addSubject.js"></script>
+  <script src="./js/subjects.js"></script>
   <script src="./js/moveSubject.js"></script>
   <script src="./js/relations.js"></script>
 </body>
