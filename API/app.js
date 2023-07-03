@@ -59,6 +59,12 @@ app.post('/api/v1/curriculums/:version/relations', async (req, res) => {
   return res.status(201).json(newRelation);
 });
 
+app.delete('/api/v1/curriculums/:version/relations/:relationId', async (req, res) => {
+  const { version, relationId } = req.params;
+  const removedRelation = await relationsService.removeRelation(version, relationId);
+  return res.status(200).json(removedRelation);
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening at http://localhost:${port}`);

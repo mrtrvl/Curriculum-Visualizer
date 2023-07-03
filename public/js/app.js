@@ -111,6 +111,7 @@ async function fetchDataAndRenderGraph(versionId) {
       if (removeRelation) {
         const approve = confirm('Are you sure you want to remove this relation?');
         if (approve) {
+          deleteRelation(edge.id())
           const edgeToRemove = cy.getElementById(edge.id());
           edgeToRemove.remove();
         }

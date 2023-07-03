@@ -19,6 +19,12 @@ const relationsService = {
     curriculum.relations.push(newRelation);
     return newRelation;
   },
+  removeRelation: async (curriculumVersionUuid, relationId) => {
+    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
+    const relationToRemove = curriculum.relations.find((r) => r.data.id === relationId);
+    curriculum.relations = curriculum.relations.filter((r) => r.data.id !== relationId);
+    return relationToRemove;
+  },
 };
 
 module.exports = relationsService;

@@ -19,3 +19,8 @@ function addNewRelation (id) {
     addRelation = false;
   }
 }
+
+function deleteRelation (id) {
+  const response = axios.delete(`${apiUrl}/curriculums/${curriculumVersionUuid}/relations/${id}`);
+  removeRelation = false;
+}
