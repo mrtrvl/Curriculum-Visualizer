@@ -40,6 +40,13 @@ app.post('/api/v1/curriculums/:version/subjects/position', async (req, res) => {
   return res.status(200).json();
 });
 
+app.put('/api/v1/curriculums/:version/subjects/:uuid', async (req, res) => {
+  const { version, uuid } = req.params;
+  const subject = req.body;
+  const updatedSubject = await subjectsService.updateSubject(version, uuid, subject);
+  return res.status(200).json(updatedSubject);
+});
+
 app.post('/api/v1/curriculums/:version/relations', async (req, res) => {
   const { version } = req.params;
   const relation = req.body;
