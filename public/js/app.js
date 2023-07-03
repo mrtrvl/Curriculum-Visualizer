@@ -40,6 +40,12 @@ async function fetchDataAndRenderGraph() {
           }
         },
         {
+          selector: 'node',
+          style: {
+            'label': 'data(id)',
+          }
+        },
+        {
           selector: 'edge',
           style: {
             'width': 3,
