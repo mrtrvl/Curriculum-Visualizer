@@ -11,7 +11,12 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<!--   <select id="categories"></select> -->
+  <dialog id="myDialog">
+    <p id="title">Õppeaine info</p>
+    <p id="dialogContent"></p>
+    <button id="closeButton">Sulge</button>
+  </dialog>
+  
   <form id="add-subject-form">
     <p id="uuid"></p>
     <input type="text" id="name" placeholder="Õppeaine nimi" required>
@@ -27,7 +32,7 @@
       <option value="6. semester">6. semester</option>
     </select>
     <select id="category" required>
-      <option value="Erialaained">Erialaained</option>
+      <option value="Eriala ained">Eriala ained</option>
       <option value="Praktika">Praktika</option>
       <option value="Kohustuslikud ained">Üleülikoolilised ained</option>
     </select>
@@ -38,6 +43,7 @@
   <button id="addRelationButton">Add Relation</button>
   <button id="removeRelationButton">Remove Relation</button>
   <div id="cy"></div>
+  <script src="./js/dialog.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/subjects.js"></script>
   <script src="./js/moveSubject.js"></script>
