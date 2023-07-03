@@ -4,10 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 const curriculums = require('../curriculums');
 
 const subjectsService = {
-  getSubjects: async (curriculumVersionUuid) => {
-    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
-    return curriculum.subjects;
-  },
   addSubject: async (curriculumVersionUuid, subject) => {
     const newSubject = {
       data: {

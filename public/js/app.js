@@ -111,6 +111,7 @@ async function fetchDataAndRenderGraph(versionId) {
         const node = evt.target;
         const subjectId = node.id();
         addNewRelation(subjectId);
+        fetchDataAndRenderGraph(versionId);
       }
     });
 

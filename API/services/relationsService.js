@@ -1,14 +1,11 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { v4: uuidv4 } = require('uuid');
-const curriculums = require('../curriculums');
+const Curriculum = require('../models');
 
 const relationsService = {
-  getRelations: async (curriculumVersionUuid) => {
-    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
-    return curriculum.relations;
-  },
   addRelation: async (curriculumVersionUuid, relation) => {
-    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
     const newRelation = {
       data: {
         id: uuidv4(),
@@ -16,14 +13,21 @@ const relationsService = {
         target: relation[1],
       },
     };
-    curriculum.relations.push(newRelation);
-    return newRelation;
+    const updated = await Curriculum.findOneAndUpdate(
+      { uuid: curriculumVersionUuid },
+      { $push: { relations: newRelation } },
+      { new: true },
+    );
+
+    return updated;
   },
   removeRelation: async (curriculumVersionUuid, relationId) => {
-    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
-    const relationToRemove = curriculum.relations.find((r) => r.data.id === relationId);
-    curriculum.relations = curriculum.relations.filter((r) => r.data.id !== relationId);
-    return relationToRemove;
+    const deleted = await Curriculum.findOneAndUpdate(
+      { uuid: curriculumVersionUuid },
+      { $pull: { relations: { 'data.id': relationId } } },
+      { new: true },
+    );
+    return deleted;
   },
 };
 

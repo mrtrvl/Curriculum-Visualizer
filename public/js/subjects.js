@@ -1,5 +1,3 @@
-const version = 'RIF23';
-
 document.getElementById('addSubject').addEventListener('click', async function(e) {
   e.preventDefault();
   sendData('add');
