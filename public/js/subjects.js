@@ -45,6 +45,7 @@ async function sendData(action) {
           parent: newSubject.parent,
         }
       });
+      fetchDataAndRenderGraph(curriculumVersionUuid);
     } else {
       alert('Please fill in all the fields!');
     }
