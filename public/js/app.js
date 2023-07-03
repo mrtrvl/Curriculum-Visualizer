@@ -7,7 +7,6 @@ let curriculumVersionUuid;
 async function fetchCurriculumVersion() {
   const response = await axios.get(`${apiUrl}/curriculums/versions`);
   createCurriculumSelect(response.data);
-  console.log(response.data);
 }
 
 fetchCurriculumVersion();

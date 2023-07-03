@@ -3,11 +3,11 @@
 }
 
 #form-container {
-  width: 30%; 
+  width: 25%; 
 }
 
 #cy-container {
-  width: 70%;
+  width: 75%;
   height: 1000px;
 }
 
@@ -31,6 +31,15 @@ body {
 }
 
 #add-relation-buttons {
+  width: 300px;
+  margin: auto;
+  background: #f7f7f7;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+#curriculum-select-container {
   width: 300px;
   margin: auto;
   background: #f7f7f7;
