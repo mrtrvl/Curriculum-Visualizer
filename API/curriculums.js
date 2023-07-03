@@ -9,6 +9,10 @@ const curriculums = [
           uuid: 'c9f4f8f8-5e1f-4836-b190-583df791c1d7',
         },
         classes: 'compound',
+        position: {
+          x: -12.569469069631168,
+          y: -704.7969161866309,
+        },
       },
       {
         data: {
@@ -49,6 +53,10 @@ const curriculums = [
           uuid: 'f524d9e9-6ef9-4ccf-980c-16af1d838fc1',
         },
         classes: 'compound',
+        position: {
+          x: -2280.728482120695,
+          y: 758.4899834692901,
+        },
       },
       {
         data: {
@@ -67,8 +75,8 @@ const curriculums = [
           ],
         },
         position: {
-          x: -148.63225655926198,
-          y: -572.1323848377069,
+          x: -1776.796318581097,
+          y: -1520.3415163261052,
         },
       },
       {
@@ -83,8 +91,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: 378.7068454797633,
-          y: -565.0061807560984,
+          x: -1251.056733837061,
+          y: -1412.4457226601685,
         },
       },
       {
@@ -99,8 +107,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -120.12744023282819,
-          y: -361.4003498529999,
+          x: -1719.547874446765,
+          y: -1117.0108556925575,
         },
       },
       {
@@ -115,24 +123,23 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -416.3739241968365,
-          y: -392.9592536429801,
+          x: -2089.5701839565304,
+          y: -1161.28972940422,
         },
       },
       {
         data: {
           id: 'Sissejuhatus tarkvaraarendusse',
-          uuid: '3b923f56-4a04-464e-9866-bcf60ae05ff3',
+          uuid: 'e18ab92e-7312-41fc-823e-380becd9ff43',
           volume: 4,
+          category: 'Erialaained',
+          description: '',
           mandatory: 'true',
           parent: '2. semester',
-          category: 'Eriala ained',
-          description: '',
-          learningOutcomes: [],
         },
         position: {
-          x: 166.95678134054077,
-          y: -581.2946472283463,
+          x: -2273.1663309189034,
+          y: -1220.0464413779257,
         },
       },
       {
@@ -147,8 +154,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -539.555451893211,
-          y: -293.1923965004619,
+          x: -2327.74927876435,
+          y: -587.8463743666023,
         },
       },
       {
@@ -163,8 +170,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -673.9353002892562,
-          y: -601.6552303186562,
+          x: -2302.0993623110908,
+          y: -1549.8643618070546,
         },
       },
       {
@@ -179,8 +186,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -108.9291195331576,
-          y: -188.33539358536612,
+          x: -1456.3924900491165,
+          y: -382.4686062079546,
         },
       },
       {
@@ -195,8 +202,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -299.3005714275549,
-          y: -345.111883380752,
+          x: -1919.072957516182,
+          y: -1156.6902568757139,
         },
       },
       {
@@ -211,8 +218,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -246.36305539274923,
-          y: -139.4699941686225,
+          x: -1986.7180257492287,
+          y: -378.65074767414166,
         },
       },
       {
@@ -227,24 +234,23 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -669.8631836711941,
-          y: 142.52408163216896,
+          x: -1893.4612205984765,
+          y: 63.12961765274511,
         },
       },
       {
         data: {
           id: 'Arvutivõrgud ja andmeside',
-          uuid: '1ce94e34-89b4-46e2-bb1a-6186636d8e3d',
+          uuid: '3fe4e6ae-4d34-4091-bd04-30efdfbc17ce',
           volume: 4,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '3. semester',
         },
         position: {
-          x: 746.2153702598562,
-          y: -592.4929679280168,
+          x: -681.7713870699307,
+          y: -843.627819806169,
         },
       },
       {
@@ -259,136 +265,128 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: -425.513740941078,
-          y: -586.7628974947813,
+          x: -2053.677802962913,
+          y: -1534.9720289831798,
         },
       },
       {
         data: {
           id: 'Kasutajakogemuse disain',
-          uuid: 'feaae6b5-ec62-410b-979d-cea5fc3977fb',
+          uuid: 'd11b5994-dbc9-4ab0-8638-5bfb56cc3480',
           volume: 4,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '3. semester',
         },
         position: {
-          x: -9.892405078171446,
-          y: -94.51553575008776,
+          x: -151.85488014215724,
+          y: -423.3919753355423,
         },
       },
       {
         data: {
           id: 'Kujundusgraafika',
-          uuid: '0749b721-a2d0-4041-b1f0-2551215d9783',
+          uuid: 'e09d20a1-da14-4a9b-8149-313b98fdbea4',
           volume: 3,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '1. semester',
         },
         position: {
-          x: 86.8211609039261,
-          y: -374.2923208849744,
+          x: -127.27250800168115,
+          y: -1330.380778198411,
         },
       },
       {
         data: {
           id: 'Andmeturve',
-          uuid: '2452c37d-3792-42e7-9175-cc25a608284f',
+          uuid: 'c842998d-e26f-4bd5-bdc6-65d04d1d093a',
           volume: 3,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '4. semester',
         },
         position: {
-          x: 290.4434278902602,
-          y: -233.29426896081182,
+          x: -908.0240741649126,
+          y: -142.42694276953992,
         },
       },
       {
         data: {
           id: 'Serverihaldus',
-          uuid: '9f2e8589-0679-4c2e-a34f-e380bff8db8d',
+          uuid: '2cc0ab88-fffd-41a0-a513-e0c11a303048',
           volume: 4,
-          mandatory: 'false',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '4. semester',
         },
         position: {
-          x: 641.6298177285082,
-          y: -40.18188606690911,
+          x: -815.5130336183323,
+          y: 61.40572779348031,
         },
       },
       {
         data: {
           id: 'Kujundusgraafika II',
-          uuid: '2c8bd2eb-1a61-4386-b1e0-54fd42a32c60',
+          uuid: '0d444035-378a-4781-b728-9b23658321d9',
           volume: 5,
-          mandatory: 'false',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '3. semester',
         },
         position: {
-          x: 142.5577501017659,
-          y: -126.36232600705148,
+          x: -616.5633295840167,
+          y: -592.4842211942574,
         },
       },
       {
         data: {
           id: 'Kasutajaliideste disain',
-          uuid: 'b7710987-b4d1-49fb-8c12-ddd8429c513c',
+          uuid: '6301d56d-b263-4593-ae1f-5e25177b45cb',
           volume: 4,
-          mandatory: 'false',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '4. semester',
         },
         position: {
-          x: -45.596411126726345,
-          y: 103.40794036323074,
+          x: -202.11190008227476,
+          y: -6.904409312039419,
         },
       },
       {
         data: {
           id: 'Disaini alused',
-          uuid: '6a32c79b-8cdc-415a-b769-6604c23c1e81',
+          uuid: '04b17ecf-8334-4aed-b36c-5ab33a636fb9',
           volume: 4,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '2. semester',
         },
         position: {
-          x: -42.92723402332556,
-          y: -267.5588426744493,
+          x: -122.08653442525925,
+          y: -952.4376407702283,
         },
       },
       {
         data: {
           id: 'Mobiilirakenduste arendamine',
-          uuid: 'fe20d3dc-1b64-475e-96ee-9c07b2f8886f',
+          uuid: '79ced183-ee33-49dc-ae46-43114a682784',
           volume: 4,
-          mandatory: 'true',
-          parent: null,
-          category: 'Eriala ained',
+          category: 'Erialaained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '4. semester',
         },
         position: {
-          x: -697.8495729240639,
-          y: -174.6198766264827,
+          x: -2263.6501032543656,
+          y: -278.22120867289584,
         },
       },
       {
@@ -403,8 +401,8 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: 548.6311169107616,
-          y: -586.1386126142331,
+          x: -1079.5329451110729,
+          y: -1534.3477441026316,
         },
       },
       {
@@ -419,72 +417,98 @@ const curriculums = [
           learningOutcomes: [],
         },
         position: {
-          x: 901.6001433637799,
-          y: -306.23352402596475,
+          x: -1697.8339304706333,
+          y: -0.2914778009083472,
         },
       },
       {
         data: {
           id: 'ELU - Erialasid Lõimiv Uuendus',
-          uuid: '784bd2a9-984f-4a4b-9d9b-2adf66f3a672',
+          uuid: 'dc3e823d-29c3-4aae-8171-a13aa797ac18',
           volume: 6,
-          mandatory: 'true',
-          parent: null,
-          category: 'Üleülikoolilised ained',
+          category: 'Kohustuslikud ained',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '3. semester',
         },
         position: {
-          x: 758.1474543008437,
-          y: -417.9609204190309,
+          x: -1020.1673436213005,
+          y: -664.0799035221135,
         },
       },
       {
         data: {
           id: 'Praktika I',
-          uuid: '135a8b51-512f-46ff-8c1d-7566c3e80323',
+          uuid: '1c526fbc-f246-4662-b5e6-0d9d22a63f40',
           volume: 10,
-          mandatory: 'true',
-          parent: null,
           category: 'Praktika',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '4. semester',
         },
         position: {
-          x: 794.1858307154296,
-          y: -194.549426319443,
+          x: -1136.513650331121,
+          y: -227.36528545952194,
         },
       },
       {
         data: {
           id: 'Praktika II',
-          uuid: '1bba6fba-85a1-45ff-b5fd-f0e87e3f6253',
+          uuid: 'e9b0823d-5a46-4f35-9a3b-db63d3dd5fe5',
           volume: 10,
-          mandatory: 'true',
-          parent: null,
           category: 'Praktika',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '5. semester',
         },
         position: {
-          x: 401.8284163065995,
-          y: -119.30707951842206,
+          x: -2328.8780363130913,
+          y: 261.3317078199662,
         },
       },
       {
         data: {
           id: 'Ettevõttepraktika',
-          uuid: '03b220d8-107e-4c01-a114-bc21d1ceeb2d',
+          uuid: 'f878a48a-324f-4247-80fc-2ea7056d8034',
           volume: 10,
-          mandatory: 'true',
-          parent: null,
           category: 'Praktika',
           description: '',
-          learningOutcomes: [],
+          mandatory: 'true',
+          parent: '5. semester',
         },
         position: {
-          x: 430.52046851707604,
-          y: 55.1667051300721,
+          x: -124.14296859362435,
+          y: 385.32693739059073,
+        },
+      },
+      {
+        data: {
+          id: 'Uurimistöö I',
+          volume: 3,
+          category: 'Erialaained',
+          description: '',
+          mandatory: 'true',
+          parent: '5. semester',
+          uuid: '6ec08219-026d-4aa8-9bb6-a79dd8c1c494',
+        },
+        position: {
+          x: -87.46078389631536,
+          y: 153.64732306109477,
+        },
+      },
+      {
+        data: {
+          id: 'Uurimistöö II',
+          volume: 3,
+          category: 'Erialaained',
+          description: '',
+          mandatory: 'true',
+          parent: '6. semester',
+          uuid: '66271de2-f073-4f9c-a61c-366121e86d07',
+        },
+        position: {
+          x: -1333.1860031762683,
+          y: 583.8598276321599,
         },
       },
     ],
@@ -615,6 +639,13 @@ const curriculums = [
           target: 'Praktika I',
         },
       },
+      {
+        data: {
+          id: '574742e3-24c3-4b2b-8409-37186575c017',
+          source: 'Uurimistöö I',
+          target: 'Uurimistöö II',
+        },
+      },
     ],
     learningOutcomes: [
       {
@@ -644,6 +675,7 @@ const curriculums = [
         topic: 'Algoritm',
       },
     ],
-  }];
+  },
+];
 
 module.exports = curriculums;

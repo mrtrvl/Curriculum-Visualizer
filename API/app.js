@@ -35,8 +35,8 @@ app.post('/api/v1/curriculums/:version/subjects', async (req, res) => {
 
 app.post('/api/v1/curriculums/:version/subjects/position', async (req, res) => {
   const { version } = req.params;
-  const { id, position } = req.body;
-  subjectsService.updatePosition(version, id, position);
+  const { uuid, position } = req.body;
+  subjectsService.updatePosition(version, uuid, position);
   return res.status(200).json();
 });
 

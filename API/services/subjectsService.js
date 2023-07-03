@@ -22,12 +22,15 @@ const subjectsService = {
   updateSubject: async (curriculumVersion, uuid, subject) => {
     const curriculum = curriculums.find((c) => c.version === curriculumVersion);
     const subjectToUpdate = curriculum.subjects.find((s) => s.data.uuid === uuid);
-    subjectToUpdate.data = subject;
+    subjectToUpdate.data = {
+      ...subject,
+      uuid,
+    };
     return subjectToUpdate;
   },
-  updatePosition: async (curriculumVersion, id, position) => {
+  updatePosition: async (curriculumVersion, uuid, position) => {
     const curriculum = curriculums.find((c) => c.version === curriculumVersion);
-    const subject = curriculum.subjects.find((s) => s.data.id === id);
+    const subject = curriculum.subjects.find((s) => s.data.uuid === uuid);
     subject.position = position;
   },
 };

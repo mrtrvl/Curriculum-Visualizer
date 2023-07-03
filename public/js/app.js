@@ -134,7 +134,17 @@ async function fetchDataAndRenderGraph() {
 
     cy.on('dragfreeon', 'node', function (evt) {
       const node = evt.target;
-      updatePosition(node.data('id'), node.position());
+      if (node.isParent()) {
+        const children = node.children();
+        children.forEach(child => {
+          const childPosition = child.position();
+          const childData = child.data();
+          const { uuid } = childData;
+          updatePosition(uuid, childPosition);
+        });
+      } else {
+        updatePosition(node.data('uuid'), node.position());
+      }
     });
 
   } catch (error) {
