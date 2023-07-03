@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cors = require('cors');
@@ -5,6 +6,7 @@ const cors = require('cors');
 const curriculumService = require('./services/curriculumService');
 const subjectsService = require('./services/subjectsService');
 const relationsService = require('./services/relationsService');
+const db = require('./db');
 
 const port = 4000;
 const app = express();
@@ -14,14 +16,19 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/api/v1/curriculums', (req, res) => {
+app.get('/api/v1/curriculums', async (req, res) => {
   const { version } = req.query;
-  const curriculum = curriculumService.getCurriculum(version);
-  return res.status(200).json(curriculum);
+  let curriculums;
+  if (!version) {
+    curriculums = await curriculumService.getCurriculums();
+  } else {
+    curriculums = await curriculumService.getCurriculum(version);
+  }
+  return res.status(200).json(curriculums);
 });
 
-app.get('/api/v1/curriculums/versions', (req, res) => {
-  const versions = curriculumService.getVersions();
+app.get('/api/v1/curriculums/versions', async (req, res) => {
+  const versions = await curriculumService.getVersions();
   return res.status(200).json(versions);
 });
 

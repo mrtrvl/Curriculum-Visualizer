@@ -10,7 +10,6 @@ function showData(node) {
   const data = node.data();
   const { id, volume, category, description, parent, uuid } = data;
   let { mandatory } = data;
-  console.log(data);
   mandatory = mandatory === 'true' ? true : false;
   if (volume) {
     document.getElementById('name').value = id;

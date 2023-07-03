@@ -1,18 +1,22 @@
-/* eslint-disable import/extensions */
-const curriculums = require('../curriculums');
+// const mongoose = require('../db');
+const Curriculum = require('../models');
 
 const curriculumService = {
-  getCurriculum: (version) => {
-    const curriculumVersion = curriculums.find((curriculum) => curriculum.uuid === version);
+  getCurriculums: async () => {
+    const allCurriculums = await Curriculum.find({});
+    return allCurriculums;
+  },
+  getCurriculum: async (version) => {
+    const curriculumVersion = await Curriculum.findOne({ uuid: version });
     if (!curriculumVersion) {
       throw new Error(`Curriculum version ${version} not found`);
     }
     return curriculumVersion;
   },
-  getVersions: () => curriculums.map((curriculum) => ({
-    uuid: curriculum.uuid,
-    version: curriculum.version,
-  })),
+  getVersions: async () => {
+    const versions = await Curriculum.find({}).select({ uuid: 1, version: 1, _id: 0 });
+    return versions;
+  },
 };
 
 module.exports = curriculumService;

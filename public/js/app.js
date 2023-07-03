@@ -13,15 +13,12 @@ fetchCurriculumVersion();
 
 async function fetchDataAndRenderGraph(versionId) {
   try {
-    const response = await fetch(`${apiUrl}/curriculums?version=${versionId}`);
-
-    if (!response.ok) {
+    const response = await axios.get(`${apiUrl}/curriculums?version=${versionId}`);
+    if (!response.data) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    const data = await response.json();
-    subjects = data.subjects;
-    relations = data.relations;
+    subjects = response.data.subjects;
+    relations = response.data.relations;
     cy = cytoscape({
       container: document.getElementById('cy'),
       elements: {
