@@ -135,12 +135,7 @@ const curriculums = [
           parent: '1. semester',
           category: 'Eriala ained',
           description: 'Arv- ja tekstandmete esitamine arvutis. Arvusüsteemid. Ülevaade programmeerimiskeeltest. Kõrgtaseme keelte süntaks ja semantika. Muutujad. Lihtandmetüübid. Struktuursed andmetüübid. Aritmeetika- ja loogikaavaldised. Omistamine. Sisend. Väljund. Juhtstruktuurid: jada, valik ja kordus ning vastavad keeletarindid. Alamprogrammid ja parameetrite edastamine. Failid.',
-          learningOutcomes: [
-            'tunneb protseduurse programmeerimisega seonduvaid põhimõtteid, mõisteid ja keelt ning programmeerimise olemust',
-            'analüüsib lihtsamaid probleeme ning koostab nende lahendamiseks algoritme, kasutades sealjuures tüüpalgoritme',
-            'esitab algoritme tegevusskeemi abil ning „tõlgib“ algoritmi programmeerimiskeelde, jälgides kodeerimise reegleid ja häid tavasid',
-            'oskab programmikoodi töötlemiseks kasutada sobivat keskkonda, programmikoodi siluda ja testida',
-          ],
+          learningOutcomes: [],
         },
         position: {
           x: -1776.796318581097,

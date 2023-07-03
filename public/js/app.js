@@ -33,22 +33,40 @@ async function fetchDataAndRenderGraph(versionId) {
           selector: 'node',
           style: {
             'label': 'data(id)',
+            'font-size': '20px',
+            'border-width': '2px',
+            'border-color': '#000',
+          }
+        },
+        {
+          selector: 'node[volume]',
+          style: {
+            'width': 'mapData(volume, 0, 10, 20, 120)',
+            'height': 'mapData(volume, 0, 10, 20, 120)',
           }
         },
         {
           selector: 'node[mandatory = "true"]',
           style: {
             'background-color': '#f00',
-            'width': 'mapData(volume, 0, 10, 20, 60)',
-            'height': 'mapData(volume, 0, 10, 20, 60)'
           }
         },
         {
           selector: 'node[mandatory = "false"]',
           style: {
             'background-color': '#666',
-            'width': 'mapData(volume, 0, 10, 20, 60)',
-            'height': 'mapData(volume, 0, 10, 20, 60)'
+          }
+        },
+        {
+          selector: 'node[category = "Praktika"]',
+          style: {
+            'background-color': 'orange',
+          }
+        },
+        {
+          selector: 'node[category = "Üleülikoolilised ained"]',
+          style: {
+            'background-color': 'lightblue',
           }
         },
         {
@@ -56,9 +74,9 @@ async function fetchDataAndRenderGraph(versionId) {
           style: {
             'width': 3,
             'line-color': '#ccc',
-            'target-arrow-color': 'blue',
+            'target-arrow-color': '#ccc',
             'target-arrow-shape': 'triangle',
-            'target-arrow-size': '20px',
+            'arrow-scale': '2',
             'curve-style': 'bezier',
           }
         },
