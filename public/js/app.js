@@ -67,6 +67,12 @@ async function fetchDataAndRenderGraph(versionId) {
           }
         },
         {
+          selector: 'node[category = "Erialane inglise keel"]',
+          style: {
+            'background-color': 'darkblue',
+          }
+        },
+        {
           selector: 'edge',
           style: {
             'width': 3,

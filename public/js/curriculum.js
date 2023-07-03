@@ -8,7 +8,9 @@ function createCurriculumSelect(versions) {
     select.appendChild(option);
   });
   versionId = versions[versions.length - 1].uuid;
-  fetchDataAndRenderGraph(versionId);
+  select.options[select.options.length - 1].selected = true;
+  curriculumVersionUuid = versionId;
+  fetchDataAndRenderGraph(curriculumVersionUuid);
 }
 
 select.addEventListener('change', function () {

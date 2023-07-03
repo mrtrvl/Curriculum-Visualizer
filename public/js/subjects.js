@@ -8,6 +8,16 @@ document.getElementById('updateSubject').addEventListener('click', async functio
   sendData('update');
 });
 
+function clearForm() {
+  document.getElementById('name').value = '';
+  document.getElementById('volume').value = '';
+  document.getElementById('category').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('mandatory').checked = false;
+  document.getElementById('parent').value = '';
+  document.getElementById('uuid').innerText = '';
+}
+
 async function sendData(action) {
   const subjectData = {
     id: document.getElementById('name').value,
@@ -33,8 +43,11 @@ async function sendData(action) {
       console.log(response);
       if (!response) {
         throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        clearForm();
       }
       const newSubject = await response.data;
+      console.log(response.data);
       cy.add({
         data: {
           id: newSubject.id,
