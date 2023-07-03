@@ -4,23 +4,23 @@ const { v4: uuidv4 } = require('uuid');
 const curriculums = require('../curriculums');
 
 const subjectsService = {
-  getSubjects: async (curriculumVersion) => {
-    const curriculum = curriculums.find((c) => c.version === curriculumVersion);
+  getSubjects: async (curriculumVersionUuid) => {
+    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
     return curriculum.subjects;
   },
-  addSubject: async (curriculumVersion, subject) => {
+  addSubject: async (curriculumVersionUuid, subject) => {
     const newSubject = {
       data: {
         ...subject,
         uuid: uuidv4(),
       },
     };
-    const curriculum = curriculums.find((c) => c.version === curriculumVersion);
+    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
     curriculum.subjects.push(newSubject);
     return subject;
   },
-  updateSubject: async (curriculumVersion, uuid, subject) => {
-    const curriculum = curriculums.find((c) => c.version === curriculumVersion);
+  updateSubject: async (curriculumVersionUuid, uuid, subject) => {
+    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
     const subjectToUpdate = curriculum.subjects.find((s) => s.data.uuid === uuid);
     subjectToUpdate.data = {
       ...subject,
@@ -28,8 +28,8 @@ const subjectsService = {
     };
     return subjectToUpdate;
   },
-  updatePosition: async (curriculumVersion, uuid, position) => {
-    const curriculum = curriculums.find((c) => c.version === curriculumVersion);
+  updatePosition: async (curriculumVersionUuid, uuid, position) => {
+    const curriculum = curriculums.find((c) => c.uuid === curriculumVersionUuid);
     const subject = curriculum.subjects.find((s) => s.data.uuid === uuid);
     subject.position = position;
   },

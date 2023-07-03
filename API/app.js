@@ -20,6 +20,11 @@ app.get('/api/v1/curriculums', (req, res) => {
   return res.status(200).json(curriculum);
 });
 
+app.get('/api/v1/curriculums/versions', (req, res) => {
+  const versions = curriculumService.getVersions();
+  return res.status(200).json(versions);
+});
+
 app.get('/api/v1/curriculums/:version/subjects', async (req, res) => {
   const { version } = req.params;
   const subjects = await subjectsService.getSubjects(version);

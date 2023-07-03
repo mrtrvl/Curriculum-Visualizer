@@ -2,10 +2,19 @@ const apiUrl = 'http://localhost:4000/api/v1';
 let subjects = [];
 let relations = [];
 let cy;
+let curriculumVersionUuid;
 
-async function fetchDataAndRenderGraph() {
+async function fetchCurriculumVersion() {
+  const response = await axios.get(`${apiUrl}/curriculums/versions`);
+  createCurriculumSelect(response.data);
+  console.log(response.data);
+}
+
+fetchCurriculumVersion();
+
+async function fetchDataAndRenderGraph(versionId) {
   try {
-    const response = await fetch(`${apiUrl}/curriculums?version=RIF23`);
+    const response = await fetch(`${apiUrl}/curriculums?version=${versionId}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -152,5 +161,3 @@ async function fetchDataAndRenderGraph() {
     console.error('Error:', error);
   }
 }
-
-fetchDataAndRenderGraph();

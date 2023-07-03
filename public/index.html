@@ -1,52 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="https://unpkg.com/cytoscape@3.18.1/dist/cytoscape.min.js"></script>
-  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
-  <script src="https://unpkg.com/cytoscape-dagre@1.6.0/cytoscape-dagre.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</head>
-<body>
-  <dialog id="myDialog">
-    <p id="title">Õppeaine info</p>
-    <p id="dialogContent"></p>
-    <button id="closeButton">Sulge</button>
-  </dialog>
-  
-  <form id="add-subject-form">
-    <p id="uuid"></p>
-    <input type="text" id="name" placeholder="Õppeaine nimi" required>
-    <input type="number" id="volume" placeholder="Aine maht EAP-des" required>
-    <label for="mandatory">Kohustuslik aine</label>
-    <input type="checkbox" id="mandatory" placeholder="Kohustuslik aine">
-    <select id="parent" required>
-      <option value="1. semester">1. semester</option>
-      <option value="2. semester">2. semester</option>
-      <option value="3. semester">3. semester</option>
-      <option value="4. semester">4. semester</option>
-      <option value="5. semester">5. semester</option>
-      <option value="6. semester">6. semester</option>
-    </select>
-    <select id="category" required>
-      <option value="Eriala ained">Eriala ained</option>
-      <option value="Praktika">Praktika</option>
-      <option value="Kohustuslikud ained">Üleülikoolilised ained</option>
-    </select>
-    <textarea type="text" id="description" placeholder="Kirjeldus"></textarea>
-    <button type="submit" id="addSubject">Add Subject</button>
-    <button type="submit" id="updateSubject">Update Subject</button>
-  </form>
-  <button id="addRelationButton">Add Relation</button>
-  <button id="removeRelationButton">Remove Relation</button>
-  <div id="cy"></div>
-  <script src="./js/dialog.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/subjects.js"></script>
-  <script src="./js/moveSubject.js"></script>
-  <script src="./js/relations.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://unpkg.com/cytoscape@3.18.1/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@1.6.0/cytoscape-dagre.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <dialog id="myDialog">
+      <p id="title">Õppeaine info</p>
+      <p id="dialogContent"></p>
+      <button id="closeButton">Sulge</button>
+    </dialog>
+    <div id="container">
+      <div id="form-container">
+        <div id="curriculum-container">
+          <h2>Õppekava versioon</h2>
+          <select name="curriculum" id="curriculum-select"></select>
+        </div>
+        <form id="add-subject-form">
+          <h2>Õppeaine</h2>
+          <p id="uuid"></p>
+          <input type="text" id="name" placeholder="Õppeaine nimi" required />
+          <input
+            type="number"
+            id="volume"
+            placeholder="Aine maht EAP-des"
+            required
+          />
+          <label for="mandatory">Kohustuslik aine</label>
+          <input
+            type="checkbox"
+            id="mandatory"
+            placeholder="Kohustuslik aine"
+          />
+          <select id="parent" required>
+            <option value="1. semester">1. semester</option>
+            <option value="2. semester">2. semester</option>
+            <option value="3. semester">3. semester</option>
+            <option value="4. semester">4. semester</option>
+            <option value="5. semester">5. semester</option>
+            <option value="6. semester">6. semester</option>
+          </select>
+          <select id="category" required>
+            <option value="Eriala ained">Eriala ained</option>
+            <option value="Praktika">Praktika</option>
+            <option value="Kohustuslikud ained">Üleülikoolilised ained</option>
+          </select>
+          <textarea
+            type="text"
+            id="description"
+            placeholder="Kirjeldus"
+          ></textarea>
+          <button type="submit" id="addSubject">Lisa</button>
+          <button type="submit" id="updateSubject">Muuda</button>
+        </form>
+        <div id="add-relation-buttons">
+          <h2>Seosed</h2>
+          <button id="addRelationButton">Lisa</button>
+          <button id="removeRelationButton">Kustuta</button>
+        </div>
+      </div>
+      <div id="cy-container">
+        <div id="cy"></div>
+      </div>
+    </div>
+
+    <script src="./js/dialog.js"></script>
+    <script src="./js/curriculum.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/subjects.js"></script>
+    <script src="./js/moveSubject.js"></script>
+    <script src="./js/relations.js"></script>
+  </body>
 </html>

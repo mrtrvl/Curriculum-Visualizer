@@ -1,6 +1,74 @@
 const curriculums = [
   {
+    name: 'Rakendusinformaatika',
+    version: 'RIF22',
+    uuid: 'd1b3cad2-b7c2-4329-b858-a7d9f4ade357',
+    subjects: [
+      {
+        data: {
+          id: '1. semester',
+          label: '1. semester',
+          uuid: '520dc437-36cf-423f-b0c2-05fb99c551e4',
+        },
+        classes: 'compound',
+        position: {
+          x: -12.569469069631168,
+          y: -704.7969161866309,
+        },
+      },
+      {
+        data: {
+          id: '2. semester',
+          label: '2. semester',
+          uuid: '5e31bfbc-3ea8-4f1e-96d4-1ad9dd31a093',
+        },
+        classes: 'compound',
+      },
+      {
+        data: {
+          id: '3. semester',
+          label: '3. semester',
+          uuid: '199d2eea-52ec-4059-92d8-8bdadbec16a9',
+        },
+        classes: 'compound',
+      },
+      {
+        data: {
+          id: '4. semester',
+          label: '4. semester',
+          uuid: 'dcd81d22-dd3a-4fa2-8e5e-3d95c0bcf974',
+        },
+        classes: 'compound',
+      },
+      {
+        data: {
+          id: '5. semester',
+          label: '5. semester',
+          uuid: '0200d261-a18b-430c-9b05-167596f92008',
+        },
+        classes: 'compound',
+      },
+      {
+        data: {
+          id: '6. semester',
+          label: '6. semester',
+          uuid: 'c148a0fd-36b2-461d-9040-a99ab1280055',
+        },
+        classes: 'compound',
+        position: {
+          x: -2280.728482120695,
+          y: 758.4899834692901,
+        },
+      },
+    ],
+    relations: [],
+    learningOutcomes: [],
+    topics: [],
+  },
+  {
+    name: 'Rakendusinformaatika',
     version: 'RIF23',
+    uuid: '6a7d8807-fb00-48ee-885a-1aec0f3d9b89',
     subjects: [
       {
         data: {

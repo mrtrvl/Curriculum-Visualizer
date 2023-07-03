@@ -28,9 +28,9 @@ async function sendData(action) {
         subjectData.parent) {
       let response = null;
       if (action === 'add') {
-        response = await axios.post(`${apiUrl}/curriculums/${version}/subjects`, subjectData);
+        response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`, subjectData);
       } else {
-        response = await axios.put(`${apiUrl}/curriculums/${version}/subjects/${uuid}`, subjectData);
+        response = await axios.put(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${uuid}`, subjectData);
       }
       console.log(response);
       if (!response) {
