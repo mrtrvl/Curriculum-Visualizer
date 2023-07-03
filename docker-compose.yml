@@ -1,0 +1,34 @@
+version: '3'
+services:
+  app:
+    build: 
+      context: API/.
+      dockerfile: Dockerfile
+    container_name: app
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongo
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: public/.
+    ports:
+      - '80:80'
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    volumes:
+      - mongodb:/data/db
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+volumes:
+  mongodb:

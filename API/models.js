@@ -15,6 +15,7 @@ const relationSchema = new mongoose.Schema({
     id: String,
     source: String,
     target: String,
+    recommended: String,
   },
 });
 

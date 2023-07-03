@@ -88,11 +88,22 @@ body {
   margin-bottom: 20px;
 }
 
-#add-subject-form button {
+#add-subject-form button,
+#addRelationButton {
   width: 100%;
   padding: 10px;
   border: none;
   background: #007BFF;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#removeRelationButton {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: red;
   color: white;
   border-radius: 5px;
   cursor: pointer;

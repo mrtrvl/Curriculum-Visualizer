@@ -84,7 +84,7 @@ async function fetchDataAndRenderGraph(versionId) {
           }
         },
         {
-          selector: 'edge[cooperation = "true"]',
+          selector: 'edge[recommended = "true"]',
           style: {
             'line-color': '#0f0',
             'target-arrow-color': '#0f0',
@@ -98,6 +98,13 @@ async function fetchDataAndRenderGraph(versionId) {
             'line-color': '#0f0',
             'target-arrow-color': '#0f0'
           }
+        },
+        {
+          selector: '.highlighted-node',
+          style: {
+            'background-color': 'darkgreen',
+            'line-color': '#0f0',
+          }
         }
       ],
 
@@ -110,14 +117,17 @@ async function fetchDataAndRenderGraph(versionId) {
       if (!addRelation) {
         const node = evt.target;
         cy.elements().removeClass('highlighted');
+        cy.elements().removeClass('highlighted-node');
         node.predecessors().addClass('highlighted');
         node.parent().removeClass('highlighted');
+        if (!node.isParent()) {
+          node.addClass('highlighted-node');
+        }
         showData(node);
       } else {
         const node = evt.target;
         const subjectId = node.id();
         addNewRelation(subjectId);
-        fetchDataAndRenderGraph(versionId);
       }
     });
 

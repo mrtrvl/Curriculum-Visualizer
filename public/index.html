@@ -58,15 +58,26 @@
             placeholder="Kirjeldus"
           ></textarea>
           <button type="submit" id="addSubject">Lisa</button>
+          <p>Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel tee muudatused ja vajuta <strong>Muuda</strong> nuppu</p>
           <button type="submit" id="updateSubject">Muuda</button>
         </form>
         <div id="add-relation-buttons">
           <h2>Seosed</h2>
+          <p>Range seose loomiseks vajuta <strong>Lisa</strong> nuppu ja seejärel esimesena eeldusaine ja seejärel teine aine.
+          <br>Soovitusliku seose loomiseks märgi enne seose lisamist <strong>Soovituslik</strong> märkeruut.
+          </p>
           <button id="addRelationButton">Lisa</button>
+          <label for="recommended">Soovituslik</label>
+          <input
+            type="checkbox"
+            id="recommended"
+            placeholder="Soovituslik"
+          />
           <button id="removeRelationButton">Kustuta</button>
         </div>
         <div id="search-container">
           <h2>Otsing</h2>
+          <p>Veel ei tööta :P</p>
           <input type="text" id="search-input">
         </div>
       </div>

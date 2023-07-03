@@ -61,8 +61,8 @@ app.put('/api/v1/curriculums/:version/subjects/:uuid', async (req, res) => {
 
 app.post('/api/v1/curriculums/:version/relations', async (req, res) => {
   const { version } = req.params;
-  const relation = req.body;
-  const newRelation = await relationsService.addRelation(version, relation);
+  const relationToAdd = req.body;
+  const newRelation = await relationsService.addRelation(version, relationToAdd);
   return res.status(201).json(newRelation);
 });
 

@@ -9,8 +9,9 @@ const relationsService = {
     const newRelation = {
       data: {
         id: uuidv4(),
-        source: relation[0],
-        target: relation[1],
+        source: relation.relation[0],
+        target: relation.relation[1],
+        recommended: relation.recommended,
       },
     };
     const updated = await Curriculum.findOneAndUpdate(
