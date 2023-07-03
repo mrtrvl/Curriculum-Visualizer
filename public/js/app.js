@@ -149,6 +149,22 @@ async function fetchDataAndRenderGraph() {
       }
     });
 
+    cy.elements('node:parent').forEach(function(ele){
+      let volumeSumMandatory = 0;
+      let volumeSumOptional = 0;
+      let children = ele.children();
+      children.each(function(child){
+        if (child.data('mandatory') === 'true') {
+          volumeSumMandatory += child.data('volume');
+        } else {
+          volumeSumOptional += child.data('volume');
+        }
+      });
+      ele.data('volumeSumMandatory', volumeSumMandatory);
+      ele.data('volumeSumOptional', volumeSumOptional);
+      ele.style('label', `${ele.data('id')} (${volumeSumMandatory}/${volumeSumOptional})`);
+  });
+
   } catch (error) {
     console.error('Error:', error);
   }
