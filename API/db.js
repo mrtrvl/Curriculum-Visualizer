@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost:27017/curriculum';
+const connectionString = 'mongodb://mongo:27017/curriculum';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
