@@ -56,9 +56,10 @@ async function fetchDataAndRenderGraph(versionId) {
           style: {
             'width': 3,
             'line-color': '#ccc',
-            'target-arrow-color': '#ccc',
+            'target-arrow-color': 'blue',
             'target-arrow-shape': 'triangle',
-            'curve-style': 'bezier'
+            'target-arrow-size': '20px',
+            'curve-style': 'bezier',
           }
         },
         {
@@ -67,14 +68,6 @@ async function fetchDataAndRenderGraph(versionId) {
             'line-color': '#0f0',
             'target-arrow-color': '#0f0',
             'line-style': 'dashed'
-          }
-        },
-        {
-          selector: 'edge[cooperation != "true"]',
-          style: {
-            'line-color': '#ccc',
-            'target-arrow-color': '#ccc',
-            'target-arrow-shape': 'triangle'
           }
         },
         {
