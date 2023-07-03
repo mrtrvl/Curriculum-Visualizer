@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile
       context: public/.
     ports:
-      - '80:80'
+      - '8888:80'
   mongo:
     container_name: mongo
     image: mongo
