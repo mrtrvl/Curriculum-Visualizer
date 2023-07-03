@@ -6,6 +6,7 @@ const curriculums = [
         data: {
           id: '1. semester',
           label: '1. semester',
+          uuid: 'c9f4f8f8-5e1f-4836-b190-583df791c1d7',
         },
         classes: 'compound',
       },
@@ -13,6 +14,7 @@ const curriculums = [
         data: {
           id: '2. semester',
           label: '2. semester',
+          uuid: '401b97b6-d8b1-4325-8956-9a49179c70dc',
         },
         classes: 'compound',
       },
@@ -20,6 +22,7 @@ const curriculums = [
         data: {
           id: '3. semester',
           label: '3. semester',
+          uuid: 'eb1fc3ba-88e2-4981-b587-bd8a16e06f88',
         },
         classes: 'compound',
       },
@@ -27,6 +30,7 @@ const curriculums = [
         data: {
           id: '4. semester',
           label: '4. semester',
+          uuid: 'b0b41560-dbaf-4186-b3ca-c94bbfe051b3',
         },
         classes: 'compound',
       },
@@ -34,6 +38,7 @@ const curriculums = [
         data: {
           id: '5. semester',
           label: '5. semester',
+          uuid: 'd0f23725-e50f-4e9a-88a8-b74593db9dfd',
         },
         classes: 'compound',
       },
@@ -41,12 +46,14 @@ const curriculums = [
         data: {
           id: '6. semester',
           label: '6. semester',
+          uuid: 'f524d9e9-6ef9-4ccf-980c-16af1d838fc1',
         },
         classes: 'compound',
       },
       {
         data: {
           id: 'Programmeerimise alused',
+          uuid: '027be654-31da-49d3-9d4b-48320d58387f',
           volume: 6,
           mandatory: 'true',
           parent: '1. semester',
@@ -67,6 +74,7 @@ const curriculums = [
       {
         data: {
           id: 'Multimeedium',
+          uuid: '3c1f7312-1844-47dd-b3be-52d2a8c379c8',
           volume: 4,
           mandatory: 'true',
           parent: '1. semester',
@@ -82,6 +90,7 @@ const curriculums = [
       {
         data: {
           id: 'Andmebaasid',
+          uuid: '122a129b-f343-4d8d-a070-035270230229',
           volume: 3,
           mandatory: 'true',
           parent: '2. semester',
@@ -97,6 +106,7 @@ const curriculums = [
       {
         data: {
           id: 'Veebirakendused ja nende loomine',
+          uuid: '73dde79f-da39-4572-a8db-df7581bdad49',
           volume: 3,
           mandatory: 'true',
           parent: '2. semester',
@@ -112,6 +122,7 @@ const curriculums = [
       {
         data: {
           id: 'Sissejuhatus tarkvaraarendusse',
+          uuid: '3b923f56-4a04-464e-9866-bcf60ae05ff3',
           volume: 4,
           mandatory: 'true',
           parent: '2. semester',
@@ -127,6 +138,7 @@ const curriculums = [
       {
         data: {
           id: 'Veebiraamistikud',
+          uuid: '3f9a265c-9c08-496c-b788-02eb9056be62',
           volume: 4,
           mandatory: 'true',
           parent: '3. semester',
@@ -142,6 +154,7 @@ const curriculums = [
       {
         data: {
           id: 'Veebiprogrammeerimine',
+          uuid: '4127f949-7d28-4544-a056-c43c70e35f4c',
           volume: 5,
           mandatory: 'true',
           sparent: '1. semester',
@@ -157,6 +170,7 @@ const curriculums = [
       {
         data: {
           id: 'Andmebaasid II',
+          uuid: '05678cff-f38c-43d9-a587-a6816be8f3fe',
           volume: 3,
           mandatory: 'false',
           parent: '3. semester',
@@ -172,6 +186,7 @@ const curriculums = [
       {
         data: {
           id: 'Programmeerimine I',
+          uuid: '6b9a9c6b-10c8-4416-b653-a9f80f1826e3',
           volume: 5,
           mandatory: 'false',
           parent: '2. semester',
@@ -187,6 +202,7 @@ const curriculums = [
       {
         data: {
           id: 'Programmeerimine II',
+          uuid: 'b9711f8c-79a0-41e0-8da4-cafe780a66d8',
           volume: 5,
           mandatory: 'false',
           parent: '3. semester',
@@ -202,6 +218,7 @@ const curriculums = [
       {
         data: {
           id: 'Programmeerimine III',
+          uuid: 'fcc9cfac-ff6a-4e0e-9a5a-5f57011e9d8a',
           volume: 5,
           mandatory: 'false',
           parent: '4. semester',
@@ -217,6 +234,7 @@ const curriculums = [
       {
         data: {
           id: 'Arvutivõrgud ja andmeside',
+          uuid: '1ce94e34-89b4-46e2-bb1a-6186636d8e3d',
           volume: 4,
           mandatory: 'true',
           semester: null,
@@ -232,6 +250,7 @@ const curriculums = [
       {
         data: {
           id: 'Riistvara ja operatsioonisüsteemide alused',
+          uuid: 'aca43ec1-a0c9-4e13-acf0-16cc8d8823c6',
           volume: 4,
           mandatory: 'true',
           parent: '1. semester',
@@ -247,6 +266,7 @@ const curriculums = [
       {
         data: {
           id: 'Kasutajakogemuse disain',
+          uuid: 'feaae6b5-ec62-410b-979d-cea5fc3977fb',
           volume: 4,
           mandatory: 'true',
           semester: null,
@@ -262,6 +282,7 @@ const curriculums = [
       {
         data: {
           id: 'Kujundusgraafika',
+          uuid: '0749b721-a2d0-4041-b1f0-2551215d9783',
           volume: 3,
           mandatory: 'true',
           semester: null,
@@ -277,6 +298,7 @@ const curriculums = [
       {
         data: {
           id: 'Andmeturve',
+          uuid: '2452c37d-3792-42e7-9175-cc25a608284f',
           volume: 3,
           mandatory: 'true',
           semester: null,
@@ -292,6 +314,7 @@ const curriculums = [
       {
         data: {
           id: 'Serverihaldus',
+          uuid: '9f2e8589-0679-4c2e-a34f-e380bff8db8d',
           volume: 4,
           mandatory: 'false',
           semester: null,
@@ -307,6 +330,7 @@ const curriculums = [
       {
         data: {
           id: 'Kujundusgraafika II',
+          uuid: '2c8bd2eb-1a61-4386-b1e0-54fd42a32c60',
           volume: 5,
           mandatory: 'false',
           semester: null,
@@ -322,6 +346,7 @@ const curriculums = [
       {
         data: {
           id: 'Kasutajaliideste disain',
+          uuid: 'b7710987-b4d1-49fb-8c12-ddd8429c513c',
           volume: 4,
           mandatory: 'false',
           semester: null,
@@ -337,6 +362,7 @@ const curriculums = [
       {
         data: {
           id: 'Disaini alused',
+          uuid: '6a32c79b-8cdc-415a-b769-6604c23c1e81',
           volume: 4,
           mandatory: 'true',
           semester: null,
@@ -352,6 +378,7 @@ const curriculums = [
       {
         data: {
           id: 'Mobiilirakenduste arendamine',
+          uuid: 'fe20d3dc-1b64-475e-96ee-9c07b2f8886f',
           volume: 4,
           mandatory: 'true',
           semester: null,
@@ -367,6 +394,7 @@ const curriculums = [
       {
         data: {
           id: 'Õppimine kõrgkoolis',
+          uuid: '6ba7f23c-8bb4-4510-8808-072e3ba5d6e5',
           volume: 6,
           mandatory: 'true',
           parent: '1. semester',
@@ -382,6 +410,7 @@ const curriculums = [
       {
         data: {
           id: 'Üld- ja sotsiaalpsühholoogia',
+          uuid: 'ae95e8fc-46f8-4726-8807-200411814b51',
           volume: 6,
           mandatory: 'true',
           parent: '4. semester',
@@ -397,6 +426,7 @@ const curriculums = [
       {
         data: {
           id: 'ELU - Erialasid Lõimiv Uuendus',
+          uuid: '784bd2a9-984f-4a4b-9d9b-2adf66f3a672',
           volume: 6,
           mandatory: 'true',
           semester: null,
@@ -412,6 +442,7 @@ const curriculums = [
       {
         data: {
           id: 'Praktika I',
+          uuid: '135a8b51-512f-46ff-8c1d-7566c3e80323',
           volume: 10,
           mandatory: 'true',
           semester: null,
@@ -427,6 +458,7 @@ const curriculums = [
       {
         data: {
           id: 'Praktika II',
+          uuid: '1bba6fba-85a1-45ff-b5fd-f0e87e3f6253',
           volume: 10,
           mandatory: 'true',
           semester: null,
@@ -442,6 +474,7 @@ const curriculums = [
       {
         data: {
           id: 'Ettevõttepraktika',
+          uuid: '03b220d8-107e-4c01-a114-bc21d1ceeb2d',
           volume: 10,
           mandatory: 'true',
           semester: null,
@@ -458,126 +491,126 @@ const curriculums = [
     relations: [
       {
         data: {
-          id: 1,
+          id: '15ed4b5a-a87a-45e9-91af-08af459220f5',
           source: 'Programmeerimise alused',
           target: 'Andmebaasid',
         },
       },
       {
         data: {
-          id: 2,
+          id: '93df9351-ca94-4500-82aa-025865187f5b',
           source: 'Programmeerimise alused',
           target: 'Programmeerimine I',
         },
       },
       {
         data: {
-          id: 3,
+          id: '1f0f6753-c4e1-4703-869f-bb5c310b5436',
           source: 'Programmeerimise alused',
           target: 'Veebirakendused ja nende loomine',
         },
       },
       {
         data: {
-          id: 4,
+          id: '29c54786-64c3-4f09-b241-e921af4ff518',
           source: 'Andmebaasid',
           target: 'Andmebaasid II',
         },
       },
       {
         data: {
-          id: 5,
+          id: '79ca5fd3-7702-4707-89a8-f1277a3944c0',
           source: 'Veebiprogrammeerimine',
           target: 'Veebiraamistikud',
         },
       },
       {
         data: {
-          id: 6,
+          id: 'a3416ac6-9215-40ed-b13c-ab12a90294eb',
           source: 'Programmeerimine I',
           target: 'Programmeerimine II',
         },
       },
       {
         data: {
-          id: 7,
+          id: 'fe44dae0-ec18-49b1-83e4-bafa93d76108',
           source: 'Veebirakendused ja nende loomine',
           target: 'Veebiraamistikud',
         },
       },
       {
         data: {
-          id: 9,
+          id: 'fcb4d4e7-77cb-49dd-8931-96b0a5486a49',
           source: 'Andmebaasid',
           target: 'Programmeerimine II',
         },
       },
       {
         data: {
-          id: 11,
+          id: 'd51aa834-d2da-4d3b-b62c-f6a28e5dfda5',
           source: 'Kasutajakogemuse disain',
           target: 'Kasutajaliideste disain',
         },
       },
       {
         data: {
-          id: 12,
+          id: '893e62ae-c871-4405-baf4-3361ed55c91d',
           source: 'Kujundusgraafika',
           target: 'Kujundusgraafika II',
         },
       },
       {
         data: {
-          id: 13,
+          id: 'e9fad1cf-4e8c-47a9-bc6e-4498738bd97a',
           source: 'Kujundusgraafika',
           target: 'Disaini alused',
         },
       },
       {
         data: {
-          id: 14,
+          id: '6b7fed55-ef54-4683-b140-f550d2c361c8',
           source: 'Disaini alused',
           target: 'Kasutajakogemuse disain',
         },
       },
       {
         data: {
-          id: 15,
+          id: '4e25d83a-c258-428c-abe5-747f4dd921b7',
           source: 'Veebiprogrammeerimine',
           target: 'Mobiilirakenduste arendamine',
         },
       },
       {
         data: {
-          id: 16,
+          id: 'c839767d-1a2e-4513-b628-41fe489e0382',
           source: 'Veebiraamistikud',
           target: 'Mobiilirakenduste arendamine',
         },
       },
       {
         data: {
-          id: 17,
+          id: '12491f38-693d-4edf-9641-7b96d61cdf06',
           source: 'Programmeerimine I',
           target: 'Programmeerimine III',
         },
       },
       {
         data: {
-          id: 18,
+          id: 'cde97a03-45cb-4903-b941-edc2bc006fdb',
           source: 'Programmeerimise alused',
           target: 'Praktika I',
         },
       },
       {
         data: {
-          id: 19,
+          id: '5412bf0f-680b-4e06-b73c-d5498cd997a5',
           source: 'Multimeedium',
           target: 'Praktika I',
         },
       },
       {
         data: {
-          id: 20,
+          id: 'c4439210-c34a-407e-93a9-c9c8469a6e76',
           source: 'Kujundusgraafika',
           target: 'Praktika I',
         },
