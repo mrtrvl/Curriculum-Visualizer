@@ -21,7 +21,7 @@ services:
     image: mongo
     restart: always
     volumes:
-      - mongodb:/data/db
+      - ./mongodb:/data/db
   mongo-express:
     container_name: mongo-express
     image: mongo-express
