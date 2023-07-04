@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../config';
 
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -23,7 +22,6 @@ const SubjectsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${config.apiUrl}/curriculums`);
-      console.log(response.data[1]);
       setSubjects(response.data[1].subjects);
     };
 
@@ -53,11 +51,14 @@ const SubjectsPage = () => {
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Box margin={1}>
-                {/* This is where you'll add the details for your subject */}
                 <Typography variant="h6" gutterBottom component="div">
                   Details
                 </Typography>
-                {/* Insert your detailed information about subject here. */}
+                <p>Aine maht: <strong>{subject.data.volume} EAP</strong></p>
+                <p>Aine lühikirjeldus:</p>
+                {subject.data.description}
+                <p>Toimumise aeg: <strong>{subject.data.parent}</strong></p>
+                
               </Box>
             </Collapse>
           </TableCell>
