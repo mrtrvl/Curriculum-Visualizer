@@ -123,7 +123,7 @@ async function fetchDataAndRenderGraph(versionId) {
         if (!node.isParent()) {
           node.addClass('highlighted-node');
         }
-        showData(node);
+        showSubject(node);
       } else {
         const node = evt.target;
         const subjectId = node.id();
