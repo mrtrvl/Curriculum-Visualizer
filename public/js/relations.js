@@ -20,10 +20,11 @@ async function addNewRelation (id) {
       relation,
       recommended,
     }
+    const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
     const response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/relations`, relationToAdd);
     relation = [];
     addRelation = false;
-    fetchDataAndRenderGraph(versionId);
+    fetchDataAndRenderGraph(curriculumVersionUuid);
   }
 }
 
