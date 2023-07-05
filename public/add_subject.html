@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://unpkg.com/cytoscape@3.18.1/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@1.6.0/cytoscape-dagre.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <a href="./index.html">Avaleht</a>
+    <input type="text" id="subjectCode">
+    <button id="getSubjectButton">Võta andmed ÕISist</button>
+    <form id="add-subject-form">
+      <h2>Õppeaine</h2>
+      <a href="./add_subject.html">Õppeaine lisamine</a>
+      <p id="uuid"></p>
+      <input type="text" id="code" placeholder="Õppeaine kood" required />
+      <input type="text" id="name" placeholder="Õppeaine nimi" required />
+      <input
+        type="number"
+        id="volume"
+        placeholder="Aine maht EAP-des"
+        required
+      />
+      <label for="mandatory">Kohustuslik aine</label>
+      <input
+        type="checkbox"
+        id="mandatory"
+        placeholder="Kohustuslik aine"
+      />
+      <select id="parent" required>
+        <option value="1. semester">1. semester</option>
+        <option value="2. semester">2. semester</option>
+        <option value="3. semester">3. semester</option>
+        <option value="4. semester">4. semester</option>
+        <option value="5. semester">5. semester</option>
+        <option value="6. semester">6. semester</option>
+      </select>
+      <select id="category" required>
+        <option value="Eriala ained">Eriala ained</option>
+        <option value="Praktika">Praktika</option>
+        <option value="Üleülikoolilised ained">Üleülikoolilised ained</option>
+        <option value="Erialane inglise keel">Erialane inglise keel</option>
+      </select>
+      <input type="text" id="grading" placeholder="Hindamine">
+      <textarea
+        type="text"
+        id="objectives"
+        placeholder="Eesmärgid"
+      ></textarea>
+      <textarea
+        type="text"
+        id="learningOutcomes"
+        placeholder="Õpiväljundid"
+      ></textarea>
+      <textarea
+        type="text"
+        id="description"
+        placeholder="Kirjeldus"
+      ></textarea>
+      <button type="submit" id="addSubject">Lisa</button>
+      <p>Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel tee muudatused ja vajuta <strong>Muuda</strong> nuppu</p>
+      <button type="submit" id="updateSubject">Muuda</button>
+    </form>
+    <script src="./js/app.js"></script>
+    <script src="./js/subjects.js"></script>
+    <script src="./js/moveSubject.js"></script>
+  </body>
+</html>

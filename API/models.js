@@ -28,6 +28,10 @@ const subjectSchema = new mongoose.Schema({
     parent: String,
     category: String,
     description: String,
+    code: String,
+    grading: String,
+    objectives: String,
+    learningOutcomes: String,
   },
   position: {
     x: Number,

@@ -6,7 +6,7 @@ const cors = require('cors');
 const curriculumService = require('./services/curriculumService');
 const subjectsService = require('./services/subjectsService');
 const relationsService = require('./services/relationsService');
-const db = require('./db');
+const scrapeService = require('./services/scrapeService');
 
 const port = 4000;
 const app = express();
@@ -70,6 +70,12 @@ app.delete('/api/v1/curriculums/:version/relations/:relationId', async (req, res
   const { version, relationId } = req.params;
   const removedRelation = await relationsService.removeRelation(version, relationId);
   return res.status(200).json(removedRelation);
+});
+
+app.get('/api/v1/scrape/:subjectCode', async (req, res) => {
+  const { subjectCode } = req.params;
+  const subject = await scrapeService.getSubject(subjectCode);
+  return res.status(200).json(subject);
 });
 
 app.listen(port, () => {

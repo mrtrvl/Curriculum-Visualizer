@@ -2,11 +2,10 @@ const apiUrl = 'http://localhost:4000/api/v1';
 let subjects = [];
 let relations = [];
 let cy;
-let curriculumVersionUuid;
+let curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
 
 async function fetchCurriculumVersion() {
   const response = await axios.get(`${apiUrl}/curriculums/versions`);
-  console.log(response.data);
   createCurriculumSelect(response.data);
 }
 

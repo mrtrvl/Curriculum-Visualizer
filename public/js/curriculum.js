@@ -7,14 +7,21 @@ function createCurriculumSelect(versions) {
     option.text = version.version;
     select.appendChild(option);
   });
-  versionId = versions[versions.length - 1].uuid;
-  select.options[select.options.length - 1].selected = true;
-  curriculumVersionUuid = versionId;
-  fetchDataAndRenderGraph(curriculumVersionUuid);
+  let versionId = localStorage.getItem('curriculumVersionUuid');
+  if (!versionId) {
+    versionId = versions[versions.length - 1].uuid;
+    select.options[select.options.length - 1].selected = true;
+    curriculumVersionUuid = versionId;
+    localStorage.setItem('curriculumVersionUuid', versionId);
+  } else {
+    select.value = versionId;
+  }
+  fetchDataAndRenderGraph(versionId);
 }
 
 select.addEventListener('change', function () {
   const versionId = this.value;
-  curriculumVersionUuid = versionId;
+  console.log(versionId);
+  localStorage.setItem('curriculumVersionUuid', versionId);
   fetchDataAndRenderGraph(versionId);
 });

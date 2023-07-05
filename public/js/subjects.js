@@ -8,6 +8,23 @@ document.getElementById('updateSubject').addEventListener('click', async functio
   sendData('update');
 });
 
+document.getElementById('getSubjectButton').addEventListener('click', async function(e) {
+  e.preventDefault();
+  getSubjectFromOis();
+});
+
+function fillForm(subject) {
+  document.getElementById('code').value = subject.code;
+  document.getElementById('name').value = subject.name;
+  document.getElementById('volume').value = parseInt(subject.EAP);
+  document.getElementById('grading').value = subject.grading;
+  document.getElementById('objectives').value = subject.objectives;
+  document.getElementById('learningOutcomes').value = subject.learningOutcomes;
+  document.getElementById('description').value = subject.description;
+  document.getElementById('mandatory').checked = subject.mandatory;
+  document.getElementById('uuid').innerText = subject.uuid;
+};
+
 function clearForm() {
   document.getElementById('name').value = '';
   document.getElementById('volume').value = '';
@@ -19,10 +36,15 @@ function clearForm() {
 }
 
 async function sendData(action) {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
   const subjectData = {
+    id: document.getElementById('code').value,
     id: document.getElementById('name').value,
     volume: Number(document.getElementById('volume').value),
     category: document.getElementById('category').value,
+    grading: document.getElementById('grading').value,
+    objectives: document.getElementById('objectives').value,
+    learningOutcomes: document.getElementById('learningOutcomes').value,
     description: document.getElementById('description').value,
     mandatory: document.getElementById('mandatory').checked.toString(),
     parent: document.getElementById('parent').value,
@@ -62,6 +84,21 @@ async function sendData(action) {
     } else {
       alert('Please fill in all the fields!');
     }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+async function getSubjectFromOis() {
+  const subjectId = document.getElementById('subjectCode').value;
+  try {
+    const response = await axios.get(`${apiUrl}/scrape/${subjectId}`);
+    console.log(response);
+    if (!response) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const subject = await response.data;
+    fillForm(subject);
   } catch (error) {
     console.error('Error:', error);
   }
