@@ -15,10 +15,10 @@ services:
       dockerfile: Dockerfile
       context: public/.
     ports:
-      - '8888:80'
+      - '80:80'
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:4.4.18
     restart: always
     volumes:
       - ./mongodb:/data/db
