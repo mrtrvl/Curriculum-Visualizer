@@ -52,6 +52,12 @@ app.post('/api/v1/curriculums/:version/subjects/position', async (req, res) => {
   return res.status(200).json();
 });
 
+app.post('/api/v1/curriculums/', async (req, res) => {
+  const curriculum = req.body;
+  const newCurriculum = await curriculumService.addCurriculum(curriculum);
+  return res.status(201).json(newCurriculum);
+});
+
 app.put('/api/v1/curriculums/:version/subjects/:uuid', async (req, res) => {
   const { version, uuid } = req.params;
   const subject = req.body;
