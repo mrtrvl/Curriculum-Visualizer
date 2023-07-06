@@ -1,17 +1,24 @@
-document.getElementById('addSubject').addEventListener('click', async function(e) {
+document.getElementById('addSubject').addEventListener('click', async function (e) {
   e.preventDefault();
   sendData('add');
 });
 
-document.getElementById('updateSubject').addEventListener('click', async function(e) {
-  e.preventDefault();
-  sendData('update');
-});
+const updateSubject = document.getElementById('updateSubject');
+if (updateSubject) {
+  updateSubject.addEventListener('click', async function (e) {
+    e.preventDefault();
+    sendData('update');
+  });
+}
 
-document.getElementById('getSubjectButton').addEventListener('click', async function(e) {
-  e.preventDefault();
-  getSubjectFromOis();
-});
+
+const getSubjectButton = document.getElementById('getSubjectButton');
+if (getSubjectButton) {
+  getSubjectButton.addEventListener('click', async function (e) {
+    e.preventDefault();
+    getSubjectFromOis();
+  });
+}
 
 function showSubject(node) {
   const data = node.data();
@@ -74,9 +81,9 @@ async function sendData(action) {
   console.log(subjectData);
   try {
     if (subjectData.id &&
-        subjectData.volume &&
-        subjectData.category &&
-        subjectData.parent) {
+      subjectData.volume &&
+      subjectData.category &&
+      subjectData.parent) {
       let response = null;
       if (action === 'add') {
         response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`, subjectData);
@@ -111,7 +118,7 @@ async function sendData(action) {
 }
 
 async function getSubjectFromOis() {
-  const subjectId = document.getElementById('subjectCode').value;
+  const subjectId = document.getElementById('code').value;
   try {
     const response = await axios.get(`${apiUrl}/scrape/${subjectId}`);
     console.log(response);

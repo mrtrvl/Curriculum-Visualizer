@@ -4,12 +4,20 @@ let relations = [];
 let cy;
 let curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
 
+const curriculumHeading = document.getElementById('curriculum-version');
+if(curriculumHeading) {
+  const versionName = localStorage.getItem('curriculumVersion');
+  curriculumHeading.innerText = `Õppekava versioon: ${versionName}`;
+}
+
 async function fetchCurriculumVersion() {
   const response = await axios.get(`${apiUrl}/curriculums/versions`);
   createCurriculumSelect(response.data);
 }
 
-fetchCurriculumVersion();
+if (document.getElementById('curriculum-select')) {
+  fetchCurriculumVersion();
+}
 
 async function fetchDataAndRenderGraph(versionId) {
   try {

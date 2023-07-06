@@ -21,7 +21,8 @@ function createCurriculumSelect(versions) {
 
 select.addEventListener('change', function () {
   const versionId = this.value;
-  console.log(versionId);
+  const versionName = this.selectedOptions[0].text;
   localStorage.setItem('curriculumVersionUuid', versionId);
+  localStorage.setItem('curriculumVersion', versionName);
   fetchDataAndRenderGraph(versionId);
 });

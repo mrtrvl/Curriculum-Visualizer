@@ -12,27 +12,21 @@
   </head>
   <body>
     <a href="./index.html">Avaleht</a>
-    <input type="text" id="subjectCode">
-    <button id="getSubjectButton">Võta andmed ÕISist</button>
     <form id="add-subject-form">
+      <h2 id="curriculum-version"></h2>
       <h2>Õppeaine</h2>
-      <a href="./add_subject.html">Õppeaine lisamine</a>
       <p id="uuid"></p>
-      <input type="text" id="code" placeholder="Õppeaine kood" required />
-      <input type="text" id="name" placeholder="Õppeaine nimi" required />
+      <input type="text" id="code" placeholder="Õppeaine kood"/>
+      <button id="getSubjectButton">Võta andmed ÕISist</button>
+      <input type="text" id="name" placeholder="Õppeaine nimi"/>
       <input
         type="number"
         id="volume"
         placeholder="Aine maht EAP-des"
-        required
       />
       <label for="mandatory">Kohustuslik aine</label>
-      <input
-        type="checkbox"
-        id="mandatory"
-        placeholder="Kohustuslik aine"
-      />
-      <select id="parent" required>
+      <input type="checkbox" id="mandatory" placeholder="Kohustuslik aine" />
+      <select id="parent">
         <option value="1. semester">1. semester</option>
         <option value="2. semester">2. semester</option>
         <option value="3. semester">3. semester</option>
@@ -40,30 +34,24 @@
         <option value="5. semester">5. semester</option>
         <option value="6. semester">6. semester</option>
       </select>
-      <select id="category" required>
+      <select id="category">
         <option value="Eriala ained">Eriala ained</option>
         <option value="Praktika">Praktika</option>
         <option value="Üleülikoolilised ained">Üleülikoolilised ained</option>
         <option value="Professionaalne areng">Professionaalne areng</option>
-        <option value="Tervisedendaja kompetentsus">Tervisedendaja kompetentsus</option>
+        <option value="Tervisedendaja kompetentsus">
+          Tervisedendaja kompetentsus
+        </option>
         <option value="Tervisenõustamine">Tervisenõustamine</option>
         <option value="Erialane inglise keel">Erialane inglise keel</option>
       </select>
-      <input type="text" id="grading" placeholder="Hindamine">
-      <textarea
-        type="text"
-        id="objectives"
-        placeholder="Eesmärgid"
-      ></textarea>
+      <input type="text" id="grading" placeholder="Hindamine" />
+      <textarea type="text" id="objectives" placeholder="Eesmärgid"></textarea>
+      <textarea type="text" id="description" placeholder="Kirjeldus"></textarea>
       <textarea
         type="text"
         id="learningOutcomes"
         placeholder="Õpiväljundid"
-      ></textarea>
-      <textarea
-        type="text"
-        id="description"
-        placeholder="Kirjeldus"
       ></textarea>
       <button type="submit" id="addSubject">Lisa</button>
     </form>
