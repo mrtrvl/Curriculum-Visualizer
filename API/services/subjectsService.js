@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { v4: uuidv4 } = require('uuid');
 
@@ -5,6 +6,8 @@ const Curriculum = require('../models');
 
 const subjectsService = {
   addSubject: async (curriculumVersionUuid, subject) => {
+    const learningOutcomesArray = await subject.learningOutcomes.match(/-[^-]+[;.]/g).map((outcome) => outcome.slice(1, -1).trim()).filter(Boolean);
+    subject.learningOutcomes = learningOutcomesArray;
     const newSubject = {
       data: {
         ...subject,

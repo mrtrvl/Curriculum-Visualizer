@@ -11,7 +11,6 @@ if (updateSubject) {
   });
 }
 
-
 const getSubjectButton = document.getElementById('getSubjectButton');
 if (getSubjectButton) {
   getSubjectButton.addEventListener('click', async function (e) {
@@ -20,11 +19,22 @@ if (getSubjectButton) {
   });
 }
 
+function createLearningOutcomesList(learningOutcomes) {
+  if(!learningOutcomes) return;
+  let list = '';
+  learningOutcomes.forEach((outcome) => {
+    list += `${outcome}\n`;
+  });
+  console.log(list);
+  return list;
+}
+
 function showSubject(node) {
   const data = node.data();
   console.log(node.data());
   const { id, volume, category, description, parent, uuid, code, learningOutcomes, grading, objectives } = data;
   let { mandatory } = data;
+  const outcomes = createLearningOutcomesList(learningOutcomes);
   mandatory = mandatory === 'true' ? true : false;
   if (volume) {
     document.getElementById('name').value = id;
@@ -32,7 +42,7 @@ function showSubject(node) {
     document.getElementById('category').value = category;
     document.getElementById('description').value = description;
     document.getElementById('code').value = code;
-    document.getElementById('learningOutcomes').value = learningOutcomes;
+    document.getElementById('learningOutcomes').innerHTML = outcomes;
     document.getElementById('grading').value = grading;
     document.getElementById('objectives').value = objectives;
     document.getElementById('mandatory').checked = mandatory;
