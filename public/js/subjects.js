@@ -20,57 +20,84 @@ if (getSubjectButton) {
 }
 
 function createLearningOutcomesList(learningOutcomes) {
-  if(!learningOutcomes) return;
-  let list = '';
-  learningOutcomes.forEach((outcome) => {
-    list += `${outcome}\n`;
+  const list = document.getElementById('learning-outcomes-list');
+  if(list.hasChildNodes()) {
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
+  }
+  if (!learningOutcomes) return;
+  learningOutcomes.forEach((outcome, index) => {
+    let listItem = document.createElement('li');
+    let input = document.createElement('input');
+    input.type = 'text';
+    input.value = outcome;
+    input.addEventListener('input', (event) => {
+        learningOutcomes[index] = event.target.value;
+    });
+    listItem.appendChild(input);
+    list.appendChild(listItem);
   });
-  console.log(list);
-  return list;
 }
+
 
 function showSubject(node) {
   const data = node.data();
   console.log(node.data());
-  const { id, volume, category, description, parent, uuid, code, learningOutcomes, grading, objectives } = data;
+  const { uuid, id, volume, category, description, parent, code, learningOutcomes, grading, objectives } = data;
   let { mandatory } = data;
-  const outcomes = createLearningOutcomesList(learningOutcomes);
+  createLearningOutcomesList(learningOutcomes);
   mandatory = mandatory === 'true' ? true : false;
   if (volume) {
+    document.getElementById('uuid').innerText = uuid;
     document.getElementById('name').value = id;
     document.getElementById('volume').value = volume;
     document.getElementById('category').value = category;
-    document.getElementById('description').value = description;
     document.getElementById('code').value = code;
-    document.getElementById('learningOutcomes').innerHTML = outcomes;
     document.getElementById('grading').value = grading;
+    document.getElementById('description').value = description;
     document.getElementById('objectives').value = objectives;
     document.getElementById('mandatory').checked = mandatory;
     document.getElementById('parent').value = parent;
-    document.getElementById('uuid').innerText = uuid;
   }
 }
 
 function fillForm(subject) {
+  createLearningOutcomesList(subject.learningOutcomes);
+  document.getElementById('uuid').innerText = subject.uuid;
   document.getElementById('code').value = subject.code;
   document.getElementById('name').value = subject.name;
   document.getElementById('volume').value = parseInt(subject.EAP);
   document.getElementById('grading').value = subject.grading;
   document.getElementById('objectives').value = subject.objectives;
-  document.getElementById('learningOutcomes').value = subject.learningOutcomes;
   document.getElementById('description').value = subject.description;
   document.getElementById('mandatory').checked = subject.mandatory;
   document.getElementById('uuid').innerText = subject.uuid;
 };
 
 function clearForm() {
+  createLearningOutcomesList();
+  document.getElementById('uuid').innerText = '';
+  document.getElementById('code').value = '';
   document.getElementById('name').value = '';
   document.getElementById('volume').value = '';
+  document.getElementById('grading').value = '';
   document.getElementById('category').value = '';
-  document.getElementById('description').value = '';
   document.getElementById('mandatory').checked = false;
   document.getElementById('parent').value = '';
-  document.getElementById('uuid').innerText = '';
+  document.getElementById('description').value = '';
+  document.getElementById('objectives').value = '';
+}
+
+function getLearningOutcomesValues() {
+  const list = document.getElementById('learning-outcomes-list');
+  const learningOutcomes = [];
+  if (list.hasChildNodes()) {
+    for (let i = 0; i < list.children.length; i++) {
+      learningOutcomes.push(list.children[i].firstChild.value);
+    }
+  }
+  return learningOutcomes;
 }
 
 async function sendData(action) {
@@ -82,7 +109,7 @@ async function sendData(action) {
     category: document.getElementById('category').value,
     grading: document.getElementById('grading').value,
     objectives: document.getElementById('objectives').value,
-    learningOutcomes: document.getElementById('learningOutcomes').value,
+    learningOutcomes: getLearningOutcomesValues(),
     description: document.getElementById('description').value,
     mandatory: document.getElementById('mandatory').checked.toString(),
     parent: document.getElementById('parent').value,

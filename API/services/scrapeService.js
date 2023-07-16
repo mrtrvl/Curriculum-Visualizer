@@ -6,11 +6,11 @@ const cheerio = require('cheerio');
 const baseUrl = 'https://ois2.tlu.ee/tluois/aine/';
 
 const scrapeService = {
-  scrapeSubject: (data) => {
+  scrapeSubject: async (data) => {
     const oisContent = {};
     const $ = cheerio.load(data);
     // eslint-disable-next-line func-names
-    $('.yldaine_r', data).each(function () {
+    $('.yldaine_r', data).each(async function () {
       const ryhmHeader = $(this).find('div.ryhmHeader').text();
       const yldaineC1 = $(this).find('div.yldaine_c1').text();
       const yldaineC2 = $(this).find('div.yldaine_c2').text();
@@ -22,7 +22,10 @@ const scrapeService = {
       if (yldaineC1 && yldaineC1 === 'Kontrollivorm') oisContent.grading = yldaineC2;
       if (yldaineC1 && yldaineC1 === 'Õppeaine eesmärgid') oisContent.objectives = yldaineC2;
       if (yldaineC1 && yldaineC1 === 'Õppeaine sisu lühikirjeldus') oisContent.description = yldaineC2;
-      if (yldaineC1 && yldaineC1 === 'Õppeaine õpiväljundid') oisContent.learningOutcomes = yldaineC2;
+      if (yldaineC1 && yldaineC1 === 'Õppeaine õpiväljundid') {
+        const learningOutcomesArray = await yldaineC2.match(/-[^-]+[;.]/g).map((outcome) => outcome.slice(1, -1).trim()).filter(Boolean);
+        oisContent.learningOutcomes = learningOutcomesArray;
+      }
     });
     return oisContent;
   },

@@ -6,8 +6,6 @@ const Curriculum = require('../models');
 
 const subjectsService = {
   addSubject: async (curriculumVersionUuid, subject) => {
-    const learningOutcomesArray = await subject.learningOutcomes.match(/-[^-]+[;.]/g).map((outcome) => outcome.slice(1, -1).trim()).filter(Boolean);
-    subject.learningOutcomes = learningOutcomesArray;
     const newSubject = {
       data: {
         ...subject,
