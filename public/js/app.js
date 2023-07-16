@@ -20,6 +20,7 @@ if (document.getElementById('curriculum-select')) {
 }
 
 function searchAndHighlight(keyword) {
+  console.log(keyword);
   cy.nodes().removeClass('highlighted');
   const filteredNodes = cy.nodes().filter(node => {
     return node.data('keywords').includes(keyword);
