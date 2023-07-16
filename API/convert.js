@@ -12,10 +12,7 @@ const convert = async () => {
     const curriculum = await Curriculum.findOne({ uuid });
     curriculum.subjects.forEach(async (subject) => {
       if (subject.data.learningOutcomes) {
-        // const outcomeString = subject.data.learningOutcomes.replace('Õppeaine edukal läbimisel üliõpilane:', '').trim();
-        // const outcomesArray = outcomeString.split('-').map((outcome) => outcome.trim()).filter(Boolean);
         const outcomesArray = await subject.data.learningOutcomes.match(/-[^-]+[;.]/g).map((outcome) => outcome.slice(1, -1).trim()).filter(Boolean);
-        // console.log(subject.data.uuid, outcomesArray);
         await Curriculum.updateOne(
           {
             uuid,

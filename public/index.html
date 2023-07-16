@@ -2,8 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <link rel="stylesheet" href="./css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
     <script src="https://unpkg.com/cytoscape@3.18.1/dist/cytoscape.min.js"></script>
     <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
     <script src="https://unpkg.com/cytoscape-dagre@1.6.0/cytoscape-dagre.js"></script>
@@ -11,109 +21,279 @@
     <title>Õppekava</title>
   </head>
   <body>
-    <dialog id="myDialog">
-      <p id="title">Õppeaine info</p>
-      <p id="dialogContent"></p>
-      <button id="closeButton">Sulge</button>
-    </dialog>
-    <div id="container">
-      <div id="form-container">
-        <div id="curriculum-select-container">
-          <h2>Õppekava versioon</h2>
-          <select name="curriculum" id="curriculum-select"></select>
-          <a href="curriculum.html">Õppekava lisamine</a>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-4">
+          <div class="accordion" id="curriculumExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  Õppekava versioon
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+              >
+                <div class="accordion-body">
+                  <select
+                    class="form-select"
+                    name="curriculum"
+                    id="curriculum-select"
+                  ></select>
+                  <br />
+                  <a class="btn btn-primary" href="curriculum.html"
+                    >Õppekava lisamine</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  Õppeaine
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+              >
+                <div class="accordion-body">
+                  <div>
+                    <p>Siin saad käsitsi lisada ja muuta õppeainet.</p>
+                    <p>ÕIS-ist õppeaine importimiseks õppeaine koodi abil vajuta nuppu <strong>Õppeaine lisamine ÕIS-ist</strong></p>
+                    <div id="add-subject-form">
+                      <a class="btn btn-primary" href="./add_subject.html"
+                        >Õppeaine lisamine ÕIS-ist</a
+                      >
+                      <p id="uuid"></p>
+                      <label for="code">Õppeaine kood</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="code"
+                        placeholder="Õppeaine kood"
+                        required
+                      />
+                      <label for="name">Õppeaine nimi</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="name"
+                        placeholder="Õppeaine nimi"
+                        required
+                      />
+                      <label for="volume">Aine maht EAP-des</label>
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="volume"
+                        placeholder="Aine maht EAP-des"
+                        required
+                      />
+                      <label for="mandatory">Kohustuslik/valik</label>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="mandatory"
+                          placeholder="Kohustuslik aine"
+                        />
+                        <label class="form-check-label" for="mandatory">
+                          Kohustuslik
+                        </label>
+                      </div>
+                      <label for="semester">Semester</label>
+                      <select class="form-select" id="parent" required>
+                        <option value="1. semester">1. semester</option>
+                        <option value="2. semester">2. semester</option>
+                        <option value="3. semester">3. semester</option>
+                        <option value="4. semester">4. semester</option>
+                        <option value="5. semester">5. semester</option>
+                        <option value="6. semester">6. semester</option>
+                      </select>
+                      <label for="category">Moodul</label>
+                      <select class="form-select" id="category" required>
+                        <option value="Eriala ained">Eriala ained</option>
+                        <option value="Praktika">Praktika</option>
+                        <option value="Üleülikoolilised ained">
+                          Üleülikoolilised ained
+                        </option>
+                        <option value="Professionaalne areng">
+                          Professionaalne areng
+                        </option>
+                        <option value="Tervisedendaja kompetentsus">
+                          Tervisedendaja kompetentsus
+                        </option>
+                        <option value="Tervisenõustamine">
+                          Tervisenõustamine
+                        </option>
+                        <option value="Erialane inglise keel">
+                          Erialane inglise keel
+                        </option>
+                      </select>
+                      <label for="grading">Hindamisvorm</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="grading"
+                        placeholder="Hindamisvorm"
+                      />
+                      <label for="objectives">Eesmärgid</label>
+                      <textarea
+                        class="form-control"
+                        type="text"
+                        id="objectives"
+                        placeholder="Eesmärgid"
+                      ></textarea>
+                      <label for="description">Kirjeldus</label>
+                      <textarea
+                        class="form-control"
+                        type="text"
+                        id="description"
+                        placeholder="Kirjeldus"
+                      ></textarea>
+                      <label for="objectives">Õpiväljundid</label>
+                      <section>
+                        <ul class="list-group" id="learning-outcomes-list"></ul>
+                      </section>
+                      <label for="keywords-list">Märksõnad</label>
+                      <section>
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="add-keyword-input"
+                        />
+                        <button
+                          class="btn btn-secondary btn-sm"
+                          type="button"
+                          id="add-keyword-button"
+                        >
+                          Lisa märksõna
+                        </button>
+                        <ul class="list-group" id="keywords-list"></ul>
+                      </section>
+                      <button
+                        class="btn btn-primary"
+                        type="submit"
+                        id="addSubject"
+                      >
+                        Lisa õppeaine
+                      </button>
+                      <p>
+                        Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel
+                        tee muudatused ja vajuta <strong>Muuda</strong> nuppu
+                      </p>
+                      <button
+                        class="btn btn-primary"
+                        type="submit"
+                        id="updateSubject"
+                      >
+                        Muuda
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  Seosed
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+              >
+                <div class="accordion-body">
+                  <div id="add-relation-buttons">
+                    <p>
+                      Range seose loomiseks vajuta <strong>Lisa</strong> nuppu
+                      ja seejärel esimesena eeldusaine ja seejärel teine aine.
+                      <br />Soovitusliku seose loomiseks märgi enne seose
+                      lisamist <strong>Soovituslik</strong> märkeruut.
+                      Kustutamiseks vali kõigepealt seos diagrammilt ja seejärel
+                      vajuta nuppu kustuta.
+                    </p>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="recommended"
+                        placeholder="Soovituslik"
+                      />
+                      <label class="form-check-label" for="recommended">
+                        Soovituslik
+                      </label>
+                    </div>
+                    <button class="btn btn-primary" id="addRelationButton">
+                      Lisa
+                    </button>
+                    <button class="btn btn-danger" id="removeRelationButton">
+                      Kustuta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  Otsing
+                </button>
+              </h2>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFour"
+              >
+                <div class="accordion-body">
+                  <div id="search-container">
+                    <p>Hetkel otsib ainult märksõnade hulgast</p>
+                    <input class="form-control" type="text" id="search-input" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <form id="add-subject-form">
-          <h2>Õppeaine</h2>
-          <a href="./add_subject.html">Õppeaine lisamine ÕISist</a>
-          <p id="uuid"></p>
-          <input type="text" id="code" placeholder="Õppeaine kood" required />
-          <input type="text" id="name" placeholder="Õppeaine nimi" required />
-          <input
-            type="number"
-            id="volume"
-            placeholder="Aine maht EAP-des"
-            required
-          />
-          <label for="mandatory">Kohustuslik aine</label>
-          <input
-            type="checkbox"
-            id="mandatory"
-            placeholder="Kohustuslik aine"
-          />
-          <select id="parent" required>
-            <option value="1. semester">1. semester</option>
-            <option value="2. semester">2. semester</option>
-            <option value="3. semester">3. semester</option>
-            <option value="4. semester">4. semester</option>
-            <option value="5. semester">5. semester</option>
-            <option value="6. semester">6. semester</option>
-          </select>
-          <select id="category" required>
-            <option value="Eriala ained">Eriala ained</option>
-            <option value="Praktika">Praktika</option>
-            <option value="Üleülikoolilised ained">
-              Üleülikoolilised ained
-            </option>
-            <option value="Professionaalne areng">Professionaalne areng</option>
-            <option value="Tervisedendaja kompetentsus">
-              Tervisedendaja kompetentsus
-            </option>
-            <option value="Tervisenõustamine">Tervisenõustamine</option>
-            <option value="Erialane inglise keel">Erialane inglise keel</option>
-          </select>
-          <input type="text" id="grading" placeholder="Hindamine" />
-          <textarea
-            type="text"
-            id="objectives"
-            placeholder="Eesmärgid"
-          ></textarea>
-          <textarea
-            type="text"
-            id="description"
-            placeholder="Kirjeldus"
-          ></textarea>
-          <section>
-            <p>Õpiväljundid:</p>
-            <ul id="learning-outcomes-list"></ul>
-          </section>
-          <section>
-            <p>Märksõnad:</p>
-            <input type="text" id="add-keyword-input">
-            <button type="button" id="add-keyword-button">Lisa märksõna</button>
-            <ul id="keywords-list"></ul>
-          </section>
-          <button type="submit" id="addSubject">Lisa õppeaine</button>
-          <p>
-            Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel tee
-            muudatused ja vajuta <strong>Muuda</strong> nuppu
-          </p>
-          <button type="submit" id="updateSubject">Muuda</button>
-        </form>
-        <div id="add-relation-buttons">
-          <h2>Seosed</h2>
-          <p>
-            Range seose loomiseks vajuta <strong>Lisa</strong> nuppu ja seejärel
-            esimesena eeldusaine ja seejärel teine aine. <br />Soovitusliku
-            seose loomiseks märgi enne seose lisamist
-            <strong>Soovituslik</strong> märkeruut.
-          </p>
-          <button id="addRelationButton">Lisa</button>
-          <label for="recommended">Soovituslik</label>
-          <input type="checkbox" id="recommended" placeholder="Soovituslik" />
-          <button class="button-delete" id="removeRelationButton">Kustuta</button>
+        <div class="col-8" id="cy-container">
+          <div id="cy"></div>
         </div>
-        <div id="search-container">
-          <h2>Otsing</h2>
-          <p>Hetkel otsib ainult märksõnade hulgast</p>
-          <input type="text" id="search-input" />
-        </div>
-      </div>
-      <div id="cy-container">
-        <div id="cy"></div>
       </div>
     </div>
-
     <script src="./js/config.js"></script>
     <script src="./js/curriculum.js"></script>
     <script src="./js/search.js"></script>
@@ -121,5 +301,10 @@
     <script src="./js/subjects.js"></script>
     <script src="./js/moveSubject.js"></script>
     <script src="./js/relations.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -33,14 +33,16 @@ function createLearningOutcomesList(learningOutcomes) {
     const button = document.createElement('button');
     input.type = 'text';
     button.textContent = 'Kustuta';
-    button.classList.add('button-delete');
+    button.classList.add('btn', 'btn-danger', 'btn-sm', 'float-right');
     input.value = outcome;
+    input.classList.add('form-control');
     input.addEventListener('input', (event) => {
       learningOutcomes[index] = event.target.value;
     });
     button.addEventListener('click', function () {
       list.removeChild(listItem);
     });
+    listItem.classList.add('list-group-item')
     listItem.appendChild(input);
     listItem.appendChild(button);
     list.appendChild(listItem);
@@ -55,6 +57,7 @@ addKeywordButton.addEventListener('click', function (e) {
   const keywordsList = document.getElementById('keywords-list');
   const listItem = document.createElement('li');
   listItem.textContent = keyword;
+  listItem.classList.add('list-group-item')
   listItem.addEventListener('click', function (e) {
     console.log(e.target.innerText);
   });
