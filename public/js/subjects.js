@@ -28,14 +28,21 @@ function createLearningOutcomesList(learningOutcomes) {
   }
   if (!learningOutcomes) return;
   learningOutcomes.forEach((outcome, index) => {
-    let listItem = document.createElement('li');
-    let input = document.createElement('input');
+    const listItem = document.createElement('li');
+    const input = document.createElement('input');
+    const button = document.createElement('button');
     input.type = 'text';
+    button.textContent = 'Kustuta';
+    button.classList.add('button-delete');
     input.value = outcome;
     input.addEventListener('input', (event) => {
         learningOutcomes[index] = event.target.value;
     });
+    button.addEventListener('click', function() {
+      list.removeChild(listItem);
+    });
     listItem.appendChild(input);
+    listItem.appendChild(button);
     list.appendChild(listItem);
   });
 }

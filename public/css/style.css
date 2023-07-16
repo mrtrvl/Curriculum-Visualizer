@@ -93,13 +93,13 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
-  background: #007BFF;
+/*   background: #007BFF; */
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 
-#removeRelationButton {
+.button-delete {
   width: 100%;
   padding: 10px;
   border: none;
@@ -109,9 +109,9 @@ body {
   cursor: pointer;
 }
 
-#add-subject-form button:hover {
+/* #add-subject-form button:hover {
   background: #0056b3;
-}
+} */
 
 label {
   color: #888;
@@ -155,9 +155,9 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+/* button:hover {
   background-color: #0056b3;
-}
+} */
 
 ul {
   list-style-type: none;
