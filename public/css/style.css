@@ -109,9 +109,12 @@ body {
   cursor: pointer;
 }
 
-/* #add-subject-form button:hover {
-  background: #0056b3;
-} */
+section {
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 1px #ddd;
+}
 
 label {
   color: #888;

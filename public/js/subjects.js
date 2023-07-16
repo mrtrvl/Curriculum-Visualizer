@@ -21,7 +21,7 @@ if (getSubjectButton) {
 
 function createLearningOutcomesList(learningOutcomes) {
   const list = document.getElementById('learning-outcomes-list');
-  if(list.hasChildNodes()) {
+  if (list.hasChildNodes()) {
     while (list.firstChild) {
       list.removeChild(list.firstChild);
     }
@@ -36,9 +36,9 @@ function createLearningOutcomesList(learningOutcomes) {
     button.classList.add('button-delete');
     input.value = outcome;
     input.addEventListener('input', (event) => {
-        learningOutcomes[index] = event.target.value;
+      learningOutcomes[index] = event.target.value;
     });
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
       list.removeChild(listItem);
     });
     listItem.appendChild(input);
@@ -47,13 +47,49 @@ function createLearningOutcomesList(learningOutcomes) {
   });
 }
 
+const addKeywordButton = document.getElementById('add-keyword-button');
+addKeywordButton.addEventListener('click', function (e) {
+  e.preventDefault();
+  const keywordInput = document.getElementById('add-keyword-input');
+  const keyword = keywordInput.value;
+  const keywordsList = document.getElementById('keywords-list');
+  const listItem = document.createElement('li');
+  listItem.textContent = keyword;
+  listItem.addEventListener('click', function (e) {
+    console.log(e.target.innerText);
+  });
+  keywordsList.appendChild(listItem);
+  keywordInput.value = '';
+});
+
+
+function createKeywordList(keywords) {
+  const keywordsList = document.getElementById('keywords-list');
+  if (keywordsList.hasChildNodes()) {
+    while (keywordsList.firstChild) {
+      keywordsList.removeChild(keywordsList.firstChild);
+    }
+  }
+  if (!keywords) return;
+  keywords.forEach(keyword => {
+    const listItem = document.createElement('li');
+    listItem.textContent = keyword;
+    listItem.addEventListener('click', function (e) {
+      console.log(e.target.innerText);
+      searchAndHighlight(e.target.innerText);
+    });
+    keywordsList.appendChild(listItem);
+  });
+}
+
 
 function showSubject(node) {
   const data = node.data();
   console.log(node.data());
-  const { uuid, id, volume, category, description, parent, code, learningOutcomes, grading, objectives } = data;
+  const { uuid, id, volume, category, description, parent, code, learningOutcomes, grading, objectives, keywords } = data;
   let { mandatory } = data;
   createLearningOutcomesList(learningOutcomes);
+  createKeywordList(keywords);
   mandatory = mandatory === 'true' ? true : false;
   if (volume) {
     document.getElementById('uuid').innerText = uuid;
@@ -71,6 +107,7 @@ function showSubject(node) {
 
 function fillForm(subject) {
   createLearningOutcomesList(subject.learningOutcomes);
+  createKeywordList(keywords);
   document.getElementById('uuid').innerText = subject.uuid;
   document.getElementById('code').value = subject.code;
   document.getElementById('name').value = subject.name;
@@ -84,6 +121,7 @@ function fillForm(subject) {
 
 function clearForm() {
   createLearningOutcomesList();
+  createKeywordList();
   document.getElementById('uuid').innerText = '';
   document.getElementById('code').value = '';
   document.getElementById('name').value = '';
@@ -107,6 +145,18 @@ function getLearningOutcomesValues() {
   return learningOutcomes;
 }
 
+function getKeywordsValues() {
+  const list = document.getElementById('keywords-list');
+  const keywords = [];
+  if (list.hasChildNodes()) {
+    for (let i = 0; i < list.children.length; i++) {
+      keywords.push(list.children[i].innerText);
+    }
+  }
+  return keywords;
+}
+
+
 async function sendData(action) {
   const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
   const subjectData = {
@@ -117,6 +167,7 @@ async function sendData(action) {
     grading: document.getElementById('grading').value,
     objectives: document.getElementById('objectives').value,
     learningOutcomes: getLearningOutcomesValues(),
+    keywords: getKeywordsValues(),
     description: document.getElementById('description').value,
     mandatory: document.getElementById('mandatory').checked.toString(),
     parent: document.getElementById('parent').value,

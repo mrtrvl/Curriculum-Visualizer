@@ -73,9 +73,17 @@
             id="description"
             placeholder="Kirjeldus"
           ></textarea>
-          <p>Õpiväljundid:</p>
-          <ul id="learning-outcomes-list"></ul>
-          <button type="submit" id="addSubject">Lisa</button>
+          <section>
+            <p>Õpiväljundid:</p>
+            <ul id="learning-outcomes-list"></ul>
+          </section>
+          <section>
+            <p>Märksõnad:</p>
+            <input type="text" id="add-keyword-input">
+            <button type="button" id="add-keyword-button">Lisa märksõna</button>
+            <ul id="keywords-list"></ul>
+          </section>
+          <button type="submit" id="addSubject">Lisa õppeaine</button>
           <p>
             Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel tee
             muudatused ja vajuta <strong>Muuda</strong> nuppu

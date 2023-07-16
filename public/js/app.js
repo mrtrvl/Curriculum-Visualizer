@@ -19,6 +19,14 @@ if (document.getElementById('curriculum-select')) {
   fetchCurriculumVersion();
 }
 
+function searchAndHighlight(keyword) {
+  cy.nodes().removeClass('highlighted');
+  const filteredNodes = cy.nodes().filter(node => {
+    return node.data('keywords').includes(keyword);
+  });
+  filteredNodes.addClass('highlighted');
+}
+
 async function fetchDataAndRenderGraph(versionId) {
   try {
     const response = await axios.get(`${apiUrl}/curriculums?version=${versionId}`);
