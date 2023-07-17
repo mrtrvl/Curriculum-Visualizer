@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const curriculumRouter = require('./routes/curriculumRoutes');
 const scrapeRouter = require('./routes/scrapeRoutes');
+const moduleRouter = require('./routes/moduleRoutes');
 
 const port = 4000;
 const app = express();
@@ -18,6 +19,7 @@ app.get('/', (req, res) => res.status(200).json({ healthy: true }));
 
 app.use('/api/v1/curriculums', curriculumRouter);
 app.use('/api/v1/scrape', scrapeRouter);
+app.use('/api/v1/modules', moduleRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

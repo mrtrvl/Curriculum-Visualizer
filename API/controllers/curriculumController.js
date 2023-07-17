@@ -53,7 +53,6 @@ const curriculumController = {
   },
   deleteSubjectsRelation: async (req, res) => {
     const { version, relationId } = req.params;
-    console.log(version, relationId);
     const removedRelation = await relationsService.removeRelation(version, relationId);
     return res.status(200).json(removedRelation);
   },

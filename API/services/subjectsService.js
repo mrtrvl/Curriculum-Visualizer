@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { v4: uuidv4 } = require('uuid');
 
-const { Curriculum } = require('../models');
+const Curriculum = require('../models/curriculumModel');
 
 const subjectsService = {
   addSubject: async (curriculumVersionUuid, subject) => {

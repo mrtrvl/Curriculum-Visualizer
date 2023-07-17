@@ -36,6 +36,7 @@ const scrapeService = {
       const subjectData = scrapeService.scrapeSubject(html);
       return subjectData;
     }
+    // eslint-disable-next-line no-console
     console.log('Error');
     return false;
   },
