@@ -4,16 +4,16 @@
 const Module = require('../models/moduleModel');
 
 const modulesService = {
-  addModel: async (model) => {
-    const newModel = {
-      ...model,
+  addModule: async (module) => {
+    const newModule = {
+      ...module,
     };
-    const createdModel = await Module.create(newModel);
-    return createdModel;
+    const createdModule = await Module.create(newModule);
+    return createdModule;
   },
-  getModels: async () => {
-    const allModels = await Module.find({});
-    return allModels;
+  getModules: async () => {
+    const allModules = await Module.find({});
+    return allModules;
   },
 };
 
