@@ -29,6 +29,7 @@ async function addNewRelation (id) {
 }
 
 function deleteRelation (id) {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
   const response = axios.delete(`${apiUrl}/curriculums/${curriculumVersionUuid}/relations/${id}`);
   removeRelation = false;
 }
