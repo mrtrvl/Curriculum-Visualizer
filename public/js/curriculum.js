@@ -1,6 +1,15 @@
+window.onload = () => {
+  updateVersionNameOnMenu();
+}
+
 const select = document.getElementById('curriculum-select');
 const addCurriculumButton = document.getElementById('add-curriculum-button');
 const displayCurriculumVersionName = document.getElementById('curriculum-version-name');
+const curriculumsList = document.getElementById('curriculums-list');
+
+if (curriculumsList) {
+  createCurriculumsList();
+}
 
 if (addCurriculumButton) {
   addCurriculumButton.addEventListener('click', (e) => {
@@ -12,6 +21,22 @@ if (addCurriculumButton) {
 function updateVersionNameOnMenu() {
   const versionName = localStorage.getItem('curriculumVersion');
   displayCurriculumVersionName.innerText = versionName;
+}
+
+async function createCurriculumsList() {
+  if(curriculumsList.hasChildNodes()) {
+    while (curriculumsList.firstChild) {
+      curriculumsList.removeChild(curriculumsList.firstChild);
+    }
+  }
+  const response = await axios.get(`${apiUrl}/curriculums/versions`);
+  const versions = response.data;
+  versions.forEach(version => {
+    const listItem = document.createElement('li');
+    listItem.textContent = version.version;
+    listItem.classList.add('list-group-item')
+    curriculumsList.appendChild(listItem);
+  });
 }
 
 function createCurriculumSelect(versions) {
@@ -55,6 +80,7 @@ async function addCurriculum() {
   if (response.status === 201) {
     alert('Õppekava lisamine õnnestus!');
     emptyCurriculumForm();
+    createCurriculumsList();
   }
 }
 

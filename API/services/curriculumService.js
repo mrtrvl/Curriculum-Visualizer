@@ -5,7 +5,7 @@ const Curriculum = require('../models/curriculumModel');
 
 const curriculumService = {
   getCurriculums: async () => {
-    const allCurriculums = await Curriculum.find({});
+    const allCurriculums = await Curriculum.find({}).sort('version');
     return allCurriculums;
   },
   getCurriculum: async (version) => {
@@ -16,7 +16,7 @@ const curriculumService = {
     return curriculumVersion;
   },
   getVersions: async () => {
-    const versions = await Curriculum.find({}).select({ uuid: 1, version: 1, _id: 0 });
+    const versions = await Curriculum.find({}).select({ uuid: 1, version: 1, _id: 0 }).sort('version');
     return versions;
   },
   addCurriculum: async (curriculum) => {

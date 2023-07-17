@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", initialize());
 
 function initialize() {
-  let curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
-
   const curriculumHeading = document.getElementById('curriculum-version');
 
   if (curriculumHeading) {
@@ -10,13 +8,13 @@ function initialize() {
     curriculumHeading.innerText = `Õppekava versioon: ${versionName}`;
   }
 
-  async function fetchCurriculumVersion() {
+  async function fetchCurriculumVersions() {
     const response = await axios.get(`${apiUrl}/curriculums/versions`);
     createCurriculumSelect(response.data);
   }
 
   if (document.getElementById('curriculum-select')) {
-    fetchCurriculumVersion();
+    fetchCurriculumVersions();
   }
 
   addEventListener("resize", (event) => {

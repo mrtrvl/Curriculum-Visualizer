@@ -118,8 +118,10 @@
         <div class="col-12 text-center">
           <h1>Õppekava</h1>
         </div>
-        <div>
-          <input
+        <div class="row">
+          <div class="col-6">
+            <h3>Lisa uus õppekava</h3>
+            <input
             class="form-control me-2"
             type="text"
             id="curriculum-version"
@@ -140,9 +142,13 @@
             placeholder="Semestrite arv"
             required
           />
-          <button class="btn btn-primary" id="add-curriculum-button">Lisa</button>
+          <button class="btn btn-primary" id="add-curriculum-button">Salvesta</button>
+          </div>
+          <div class="col-6">
+            <h3>Õppekavade nimekiri</h3>
+            <ul class="list-gtoup" id="curriculums-list"></ul>
+          </div>
         </div>
-
       </div>
     </div>
     <script src="./js/config.js"></script>
