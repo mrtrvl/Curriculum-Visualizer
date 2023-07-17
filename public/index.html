@@ -23,6 +23,44 @@
   <body>
     <div class="container-fluid">
       <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" id="curriculum-version-name">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./index.html">Avaleht</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Õppekava
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="./curriculum.html">Lisamine/muutmine</a></li>
+                    <li><a class="dropdown-item" href="#">Nimekiri</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Õppeaine
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="./add_subject.html">Lisamine/muutmine</a></li>
+                    <li><a class="dropdown-item" href="#">Nimekiri</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Otsing" aria-label="Search" id="search-input">
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="row">
         <div class="col-4">
           <div class="accordion" id="curriculumExample">
             <div class="accordion-item">
@@ -49,10 +87,6 @@
                     name="curriculum"
                     id="curriculum-select"
                   ></select>
-                  <br />
-                  <a class="btn btn-primary" href="curriculum.html"
-                    >Õppekava lisamine</a
-                  >
                 </div>
               </div>
             </div>
@@ -76,12 +110,7 @@
               >
                 <div class="accordion-body">
                   <div>
-                    <p>Siin saad käsitsi lisada ja muuta õppeainet.</p>
-                    <p>ÕIS-ist õppeaine importimiseks õppeaine koodi abil vajuta nuppu <strong>Õppeaine lisamine ÕIS-ist</strong></p>
                     <div id="add-subject-form">
-                      <a class="btn btn-primary" href="./add_subject.html"
-                        >Õppeaine lisamine ÕIS-ist</a
-                      >
                       <p id="uuid"></p>
                       <label for="code">Õppeaine kood</label>
                       <input
@@ -188,23 +217,12 @@
                         </button>
                         <ul class="list-group" id="keywords-list"></ul>
                       </section>
-                      <button
-                        class="btn btn-primary"
-                        type="submit"
-                        id="addSubject"
-                      >
-                        Lisa õppeaine
-                      </button>
-                      <p>
-                        Õppeaine muutmiseks vali kõigepealt õppeaine, seejärel
-                        tee muudatused ja vajuta <strong>Muuda</strong> nuppu
-                      </p>
-                      <button
+                                            <button
                         class="btn btn-primary"
                         type="submit"
                         id="updateSubject"
                       >
-                        Muuda
+                        Salvesta
                       </button>
                     </div>
                   </div>
@@ -256,32 +274,6 @@
                     <button class="btn btn-danger" id="removeRelationButton">
                       Kustuta
                     </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                  aria-expanded="false"
-                  aria-controls="collapseFour"
-                >
-                  Otsing
-                </button>
-              </h2>
-              <div
-                id="collapseFour"
-                class="accordion-collapse collapse"
-                aria-labelledby="headingFour"
-              >
-                <div class="accordion-body">
-                  <div id="search-container">
-                    <p>Hetkel otsib ainult märksõnade hulgast</p>
-                    <input class="form-control" type="text" id="search-input" />
                   </div>
                 </div>
               </div>

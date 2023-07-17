@@ -42,6 +42,11 @@ function searchAndHighlight(keyword) {
   filteredNodes.addClass('highlighted');
 }
 
+function openSubjectMenu() {
+  const subjectMenu = document.getElementById('collapseTwo');
+  subjectMenu.classList.add('show');
+}
+
 async function fetchDataAndRenderGraph(versionId) {
   try {
     const response = await axios.get(`${apiUrl}/curriculums?version=${versionId}`);
@@ -146,6 +151,7 @@ async function fetchDataAndRenderGraph(versionId) {
 
     cy.on('tap', 'node', function (evt) {
       if (!addRelation) {
+        openSubjectMenu();
         const node = evt.target;
         cy.elements().removeClass('highlighted');
         cy.elements().removeClass('highlighted-node');
@@ -161,13 +167,6 @@ async function fetchDataAndRenderGraph(versionId) {
         addNewRelation(subjectId);
       }
     });
-
-    /*     cy.on('mouseover', 'node', function (evt) {
-          const node = evt.target;
-          const volume = node.data('volume');
-          const category = node.data('category');
-          const position = node.position();
-        }); */
 
     cy.on('tap', 'edge', function (evt) {
       const edge = evt.target;

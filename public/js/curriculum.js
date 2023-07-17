@@ -1,11 +1,17 @@
 const select = document.getElementById('curriculum-select');
 const addCurriculumButton = document.getElementById('add-curriculum-button');
+const displayCurriculumVersionName = document.getElementById('curriculum-version-name');
 
 if (addCurriculumButton) {
   addCurriculumButton.addEventListener('click', (e) => {
     e.preventDefault();
     addCurriculum();
   });
+}
+
+function updateVersionNameOnMenu() {
+  const versionName = localStorage.getItem('curriculumVersion');
+  displayCurriculumVersionName.innerText = versionName;
 }
 
 function createCurriculumSelect(versions) {
@@ -24,6 +30,7 @@ function createCurriculumSelect(versions) {
   } else {
     select.value = versionId;
   }
+  updateVersionNameOnMenu()
   fetchDataAndRenderGraph(versionId);
 }
 
@@ -33,6 +40,7 @@ if (select) {
     const versionName = this.selectedOptions[0].text;
     localStorage.setItem('curriculumVersionUuid', versionId);
     localStorage.setItem('curriculumVersion', versionName);
+    updateVersionNameOnMenu()
     fetchDataAndRenderGraph(versionId);
   });
 }
