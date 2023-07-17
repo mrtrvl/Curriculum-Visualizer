@@ -10,6 +10,10 @@ const topicSchema = new mongoose.Schema({
   topic: String,
 });
 
+const moduleSchema = new mongoose.Schema({
+  name: String,
+});
+
 const relationSchema = new mongoose.Schema({
   data: {
     id: String,
@@ -38,7 +42,6 @@ const subjectSchema = new mongoose.Schema({
     x: Number,
     y: Number,
   },
-  learningOutcomes: [learningOutcomeSchema],
 });
 
 const curriculumSchema = new mongoose.Schema({
@@ -51,4 +54,7 @@ const curriculumSchema = new mongoose.Schema({
   topics: [topicSchema],
 });
 
-module.exports = mongoose.model('Curriculum', curriculumSchema);
+const Curriculum = mongoose.model('Curriculum', curriculumSchema);
+const Model = mongoose.model('Model', moduleSchema);
+
+module.exports = { Curriculum, Model };
