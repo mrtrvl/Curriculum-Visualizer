@@ -5,6 +5,13 @@ const { v4: uuidv4 } = require('uuid');
 const Curriculum = require('../models/curriculumModel');
 
 const subjectsService = {
+  getSubjects: async (curriculumVersionUuid) => {
+    const curriculum = await Curriculum.findOne({ uuid: curriculumVersionUuid });
+    if (!curriculum) {
+      throw new Error(`Curriculum version ${curriculumVersionUuid} not found`);
+    }
+    return curriculum.subjects;
+  },
   addSubject: async (curriculumVersionUuid, subject) => {
     const newSubject = {
       data: {

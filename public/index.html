@@ -67,7 +67,6 @@
                         >Lisamine/muutmine</a
                       >
                     </li>
-                    <li><a class="dropdown-item" href="#">Nimekiri</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -83,11 +82,10 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="subjectDropdown">
                     <li>
-                      <a class="dropdown-item" href="./add_subject.html"
+                      <a class="dropdown-item" href="./subjects.html"
                         >Lisamine/muutmine</a
                       >
                     </li>
-                    <li><a class="dropdown-item" href="#">Nimekiri</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -210,7 +208,7 @@
                           Kohustuslik aine
                         </label>
                       </div>
-                      <label for="semester">Semester</label>
+                      <label for="parent">Semester</label>
                       <select class="form-select" id="parent" required>
                         <option value="1. semester">1. semester</option>
                         <option value="2. semester">2. semester</option>
@@ -220,8 +218,11 @@
                         <option value="6. semester">6. semester</option>
                       </select>
                       <label for="category">Moodul</label>
-                      <select class="form-select" id="category" required>
-                      </select>
+                      <select
+                        class="form-select"
+                        id="category"
+                        required
+                      ></select>
                       <label for="grading">Hindamisvorm</label>
                       <input
                         class="form-control"
@@ -243,29 +244,25 @@
                         id="description"
                         placeholder="Kirjeldus"
                       ></textarea>
-                      <label for="objectives">Õpiväljundid</label>
-                      <section>
-                        <ul class="list-group" id="learning-outcomes-list"></ul>
-                      </section>
+                      <label for="learning-outcomes-list">Õpiväljundid</label>
+                      <ul class="list-group" id="learning-outcomes-list"></ul>
                       <label for="keywords-list">Märksõnad</label>
-                      <section>
-                        <input
-                          class="form-control"
-                          type="text"
-                          id="add-keyword-input"
-                        />
-                        <button
-                          class="btn btn-secondary btn-sm"
-                          type="button"
-                          id="add-keyword-button"
-                        >
-                          Lisa märksõna
-                        </button>
-                        <ul class="list-group" id="keywords-list"></ul>
-                      </section>
+                      <ul class="list-group" id="keywords-list"></ul>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="add-keyword-input"
+                      />
+                      <button
+                        class="btn btn-secondary btn-sm"
+                        type="button"
+                        id="add-keyword-button"
+                      >
+                        Lisa märksõna
+                      </button>
                       <button
                         class="btn btn-primary"
-                        type="submit"
+                        type="button"
                         id="updateSubject"
                       >
                         Salvesta

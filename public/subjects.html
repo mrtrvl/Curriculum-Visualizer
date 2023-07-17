@@ -10,6 +10,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/cytoscape@3.18.1/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@1.6.0/cytoscape-dagre.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Õppekava</title>
   </head>
@@ -116,38 +119,90 @@
       </div>
       <div class="row">
         <div class="col-12 text-center">
-          <h1>Õppekava</h1>
+          <h1>Õppeaine lisamine</h1>
         </div>
-        <div>
-          <input
-            class="form-control me-2"
-            type="text"
-            id="curriculum-version"
-            placeholder="Õppekava kood"
-            required
-          />
-          <input
-          class="form-control me-2"
-            type="text"
-            id="curriculum-name"
-            placeholder="Õppekava nimi"
-            required
-          />
-          <input
-          class="form-control me-2"
-            type="number"
-            id="curriculum-semester-count"
-            placeholder="Semestrite arv"
-            required
-          />
-          <button class="btn btn-primary" id="add-curriculum-button">Lisa</button>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div id="add-subject-form">
+            <h3 id="curriculum-version"></h3>
+            <p id="uuid"></p>
+            <input
+              class="form-control"
+              type="text"
+              id="code"
+              placeholder="Õppeaine kood"
+            />
+            <button class="btn btn-primary" id="getSubjectButton">
+              Võta andmed ÕISist
+            </button>
+            <input
+              class="form-control"
+              type="text"
+              id="name"
+              placeholder="Õppeaine nimi"
+            />
+            <input
+              class="form-control"
+              type="number"
+              id="volume"
+              placeholder="Aine maht EAP-des"
+            />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="mandatory"
+                placeholder="Kohustuslik aine"
+              />
+              <label class="form-check-label" for="mandatory">
+                Kohustuslik aine
+              </label>
+            </div>
+            <select class="form-control" id="parent">
+              <option value="1. semester">1. semester</option>
+              <option value="2. semester">2. semester</option>
+              <option value="3. semester">3. semester</option>
+              <option value="4. semester">4. semester</option>
+              <option value="5. semester">5. semester</option>
+              <option value="6. semester">6. semester</option>
+            </select>
+            <select class="form-control" id="category"></select>
+            <input
+              class="form-control"
+              type="text"
+              id="grading"
+              placeholder="Hindamine"
+            />
+            <textarea
+              class="form-control"
+              type="text"
+              id="objectives"
+              placeholder="Eesmärgid"
+            ></textarea>
+            <textarea
+              class="form-control"
+              type="text"
+              id="description"
+              placeholder="Kirjeldus"
+            ></textarea>
+            <ul id="learning-outcomes-list"></ul>
+            <button class="btn btn-primary" type="submit" id="addSubject">
+              Salvesta
+            </button>
+          </div>
         </div>
-
+        <div class="col-6">
+          <h3>Õppeained</h3>
+          <ul class="list-group" id="subjects-list"></ul>
+        </div>
       </div>
     </div>
     <script src="./js/config.js"></script>
     <script src="./js/app.js"></script>
-    <script src="./js/curriculum.js"></script>
+    <script src="./js/subjects.js"></script>
+    <script src="./js/moveSubject.js"></script>
+    <script src="./js/module.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

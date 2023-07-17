@@ -14,14 +14,112 @@
     <title>Õppekava</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" id="curriculum-version-name">Navbar</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="./index.html"
+                    >Avaleht</a
+                  >
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="curriculumDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Õppekava
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="curriculumDropdown"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="./curriculum.html"
+                        >Lisamine/muutmine</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="subjectDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Õppeaine
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="subjectDropdown">
+                    <li>
+                      <a class="dropdown-item" href="./subjects.html"
+                        >Lisamine/muutmine</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="moduleDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Moodulid
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                    <li>
+                      <a class="dropdown-item" href="./modules.html"
+                        >Lisamine/muutmine</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Otsing"
+                  aria-label="Search"
+                  id="search-input"
+                />
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
       <div class="row">
         <div class="col-6 text-center">
           <h1>Moodulid</h1>
         </div>
         <div class="row">
           <div class="col-6">
-            <a href="./index.html">Avaleht</a>
             <input
               class="form-control me-2"
               type="text"

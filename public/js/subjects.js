@@ -1,7 +1,17 @@
-document.getElementById('addSubject').addEventListener('click', async function (e) {
-  e.preventDefault();
-  sendData('add');
-});
+
+
+const subjectsList = document.getElementById('subjects-list');
+if (subjectsList) {
+  createSubjectsList();
+}
+
+const addSubjectButton = document.getElementById('addSubjectButton');
+if (addSubjectButton) {
+  addSubjectButton.addEventListener('click', async function (e) {
+    e.preventDefault();
+    sendData('add');
+  });
+}
 
 const updateSubject = document.getElementById('updateSubject');
 if (updateSubject) {
@@ -16,6 +26,21 @@ if (getSubjectButton) {
   getSubjectButton.addEventListener('click', async function (e) {
     e.preventDefault();
     getSubjectFromOis();
+  });
+}
+
+async function createSubjectsList() {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
+  const response = await axios.get(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`);
+  const subjects = response.data;
+  let orderNumber = 0;
+  subjects.forEach(subject => {
+    if (!subject.data.volume) return;
+    orderNumber++;
+    const listItem = document.createElement('li');
+    listItem.textContent = `${orderNumber}. ${subject.data.id}`;
+    listItem.classList.add('list-group-item')
+    subjectsList.appendChild(listItem);
   });
 }
 
@@ -50,21 +75,20 @@ function createLearningOutcomesList(learningOutcomes) {
 }
 
 const addKeywordButton = document.getElementById('add-keyword-button');
-addKeywordButton.addEventListener('click', function (e) {
-  e.preventDefault();
-  const keywordInput = document.getElementById('add-keyword-input');
-  const keyword = keywordInput.value;
-  const keywordsList = document.getElementById('keywords-list');
-  const listItem = document.createElement('li');
-  listItem.textContent = keyword;
-  listItem.classList.add('list-group-item')
-  listItem.addEventListener('click', function (e) {
-    console.log(e.target.innerText);
-  });
-  keywordsList.appendChild(listItem);
-  keywordInput.value = '';
-});
 
+if (addKeywordButton) {
+  addKeywordButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    const keywordInput = document.getElementById('add-keyword-input');
+    const keyword = keywordInput.value;
+    const keywordsList = document.getElementById('keywords-list');
+    const listItem = document.createElement('li');
+    listItem.textContent = keyword;
+    listItem.classList.add('list-group-item')
+    keywordsList.appendChild(listItem);
+    keywordInput.value = '';
+  });
+}
 
 function createKeywordList(keywords) {
   const keywordsList = document.getElementById('keywords-list');
@@ -77,8 +101,8 @@ function createKeywordList(keywords) {
   keywords.forEach(keyword => {
     const listItem = document.createElement('li');
     listItem.textContent = keyword;
+    listItem.classList.add('list-group-item')
     listItem.addEventListener('click', function (e) {
-      console.log(e.target.innerText);
       searchAndHighlight(e.target.innerText);
     });
     keywordsList.appendChild(listItem);
