@@ -32,10 +32,9 @@ function resize() {
 }
 
 function searchAndHighlight(keyword) {
-  console.log(keyword);
   cy.nodes().removeClass('highlighted');
   const filteredNodes = cy.nodes().filter(node => {
-    return node.data('keywords').includes(keyword);
+    return node.data('keywords').includes(keyword) || node.data('id').includes(keyword);
   });
   filteredNodes.addClass('highlighted');
 }
