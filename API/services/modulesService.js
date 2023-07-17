@@ -12,7 +12,7 @@ const modulesService = {
     return createdModule;
   },
   getModules: async () => {
-    const allModules = await Module.find({});
+    const allModules = await Module.find({}).sort('name');
     return allModules;
   },
 };
