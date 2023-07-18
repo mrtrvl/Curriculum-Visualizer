@@ -163,23 +163,8 @@ function createKeywordList(keywords) {
 
 function showSubject(node) {
   const data = node.data();
-  console.log(node.data());
-  const { uuid, id, volume, category, description, parent, code, learningOutcomes, grading, objectives, keywords } = data;
-  let { mandatory } = data;
-  createLearningOutcomesList(learningOutcomes);
-  createKeywordList(keywords);
-  mandatory = mandatory === 'true' ? true : false;
-  if (volume) {
-    document.getElementById('uuid').innerText = uuid;
-    document.getElementById('name').value = id;
-    document.getElementById('volume').value = volume;
-    document.getElementById('category').value = category;
-    document.getElementById('code').value = code;
-    document.getElementById('grading').value = grading;
-    document.getElementById('description').value = description;
-    document.getElementById('objectives').value = objectives;
-    document.getElementById('mandatory').checked = mandatory;
-    document.getElementById('parent').value = parent;
+  if (data.volume) {
+    fillForm(data);
   }
 }
 
