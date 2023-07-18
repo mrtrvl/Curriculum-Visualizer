@@ -12,7 +12,7 @@ const addSubjectButton = document.getElementById('addSubjectButton');
 if (addSubjectButton) {
   addSubjectButton.addEventListener('click', async function (e) {
     e.preventDefault();
-    sendData('add');
+    sendData();
   });
 }
 
@@ -41,6 +41,9 @@ async function createSubjectsTable() {
     if (!subject.data.volume) return;
     orderNumber++;
     const tr = document.createElement('tr');
+    tr.addEventListener('click', function () {
+      fillForm(subject.data);
+    });
     const td1 = document.createElement('td');
     const td2 = document.createElement('td');
     const td3 = document.createElement('td');
@@ -181,16 +184,23 @@ function showSubject(node) {
 }
 
 function fillForm(subject) {
-  createLearningOutcomesList(subject.learningOutcomes);
-  createKeywordList(keywords);
+  mandatory = subject.mandatory === 'true' ? true : false;
+  if (subject.learningOutcomes && subject.learningOutcomes.length > 0) {
+    createLearningOutcomesList(subject.learningOutcomes);
+  }
+  if (subject.keywirds && subject.keywords.length > 0) {
+    createKeywordList(subject.keywords)
+  };
   document.getElementById('uuid').innerText = subject.uuid;
   document.getElementById('code').value = subject.code;
-  document.getElementById('name').value = subject.name;
-  document.getElementById('volume').value = parseInt(subject.EAP);
+  document.getElementById('name').value = subject.id;
+  document.getElementById('volume').value = parseInt(subject.volume);
+  document.getElementById('mandatory').checked = mandatory;
+  document.getElementById('parent').value = subject.parent;
+  document.getElementById('category').value = subject.category;
   document.getElementById('grading').value = subject.grading;
   document.getElementById('objectives').value = subject.objectives;
   document.getElementById('description').value = subject.description;
-  document.getElementById('mandatory').checked = subject.mandatory;
   document.getElementById('uuid').innerText = subject.uuid;
 };
 
@@ -255,7 +265,7 @@ async function sendData(action) {
       subjectData.category &&
       subjectData.parent) {
       let response = null;
-      if (action === 'add') {
+      if (!uuid) {
         response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`, subjectData);
       } else {
         response = await axios.put(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${uuid}`, subjectData);

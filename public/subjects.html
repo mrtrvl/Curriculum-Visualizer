@@ -130,6 +130,7 @@
           <h3>Lisa uus õppeaine</h3>
           <div id="add-subject-form">
             <p id="uuid"></p>
+            <label for="code">Õppeaine kood</label>
             <input
               class="form-control"
               type="text"
@@ -139,12 +140,15 @@
             <button class="btn btn-primary" id="getSubjectButton">
               Võta andmed ÕISist
             </button>
+            <br>
+            <label for="name">Õppeaine nimi</label>
             <input
               class="form-control"
               type="text"
               id="name"
               placeholder="Õppeaine nimi"
             />
+            <label for="volume">Aine maht EAP-des</label>
             <input
               class="form-control"
               type="number"
@@ -162,6 +166,7 @@
                 Kohustuslik aine
               </label>
             </div>
+            <label for="parent">Semester</label>
             <select class="form-control" id="parent">
               <option value="1. semester">1. semester</option>
               <option value="2. semester">2. semester</option>
@@ -170,27 +175,46 @@
               <option value="5. semester">5. semester</option>
               <option value="6. semester">6. semester</option>
             </select>
+            <label for="category">Moodul</label>
             <select class="form-control" id="category"></select>
+            <label for="grading">Hindamisvorm</label>
             <input
               class="form-control"
               type="text"
               id="grading"
-              placeholder="Hindamine"
+              placeholder="Hindamisvorm"
             />
+            <label for="objectives">Eesmärgid</label>
             <textarea
               class="form-control"
               type="text"
               id="objectives"
               placeholder="Eesmärgid"
             ></textarea>
+            <label for="description">Kirjeldus</label>
             <textarea
               class="form-control"
               type="text"
               id="description"
               placeholder="Kirjeldus"
             ></textarea>
+            <label for="learning-outcomes-list">Õpiväljundid</label>
             <ul id="learning-outcomes-list"></ul>
-            <button class="btn btn-primary" type="submit" id="addSubject">
+            <label for="keywords-list">Märksõnad</label>
+            <ul class="list-group" id="keywords-list"></ul>
+            <input
+              class="form-control"
+              type="text"
+              id="add-keyword-input"
+            />
+            <button
+              class="btn btn-secondary btn-sm"
+              type="button"
+              id="add-keyword-button"
+            >
+              Lisa märksõna
+            </button>
+            <button class="btn btn-primary" type="submit" id="addSubjectButton">
               Salvesta
             </button>
           </div>
