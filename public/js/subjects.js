@@ -24,7 +24,7 @@ if (updateSubject) {
   });
 }
 
-const getSubjectButton = document.getElementById('getSubjectButton');
+const getSubjectButton = document.getElementById('getSubjectFromOisButton');
 if (getSubjectButton) {
   getSubjectButton.addEventListener('click', async function (e) {
     e.preventDefault();
@@ -241,10 +241,9 @@ function getKeywordsValues() {
   return keywords;
 }
 
-
-async function sendData(action) {
-  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
+function getDataFromForm() {
   const subjectData = {
+    uuid: document.getElementById('uuid').innerText,
     id: document.getElementById('name').value,
     code: document.getElementById('code').value,
     volume: Number(document.getElementById('volume').value),
@@ -257,7 +256,13 @@ async function sendData(action) {
     mandatory: document.getElementById('mandatory').checked.toString(),
     parent: document.getElementById('parent').value,
   };
-  const uuid = document.getElementById('uuid').innerText;
+  return subjectData;
+}
+
+
+async function sendData() {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
+  const subjectData = getDataFromForm();
   console.log(subjectData);
   try {
     if (subjectData.id &&
@@ -265,10 +270,10 @@ async function sendData(action) {
       subjectData.category &&
       subjectData.parent) {
       let response = null;
-      if (!uuid) {
+      if (!subjectData.uuid) {
         response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`, subjectData);
       } else {
-        response = await axios.put(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${uuid}`, subjectData);
+        response = await axios.put(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${subjectData.uuid}`, subjectData);
       }
       console.log(response);
       if (!response) {
@@ -277,18 +282,19 @@ async function sendData(action) {
         clearForm();
       }
       const newSubject = await response.data;
-      console.log(response.data);
-      cy.add({
-        data: {
-          id: newSubject.id,
-          volume: newSubject.volume,
-          description: newSubject.description,
-          category: newSubject.category,
-          mandatory: newSubject.mandatory,
-          parent: newSubject.parent,
-        }
-      });
-      fetchDataAndRenderGraph(curriculumVersionUuid);
+      if (cy) {
+        cy.add({
+          data: {
+            id: newSubject.id,
+            volume: newSubject.volume,
+            description: newSubject.description,
+            category: newSubject.category,
+            mandatory: newSubject.mandatory,
+            parent: newSubject.parent,
+          }
+        });
+        fetchDataAndRenderGraph(curriculumVersionUuid);
+      }
     } else {
       alert('Palun kontrolli üle, et kõik väljad oleksid täidetud.');
     }
@@ -300,13 +306,25 @@ async function sendData(action) {
 async function getSubjectFromOis() {
   const subjectId = document.getElementById('code').value;
   try {
+    const existingSubject = getDataFromForm();
     const response = await axios.get(`${apiUrl}/scrape/${subjectId}`);
     console.log(response);
     if (!response) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const subject = await response.data;
-    fillForm(subject);
+    if (existingSubject.uuid) {
+      existingSubject.volume = subject.volume;
+      existingSubject.grading = subject.grading;
+      existingSubject.objectives = subject.objectives;
+      existingSubject.description = subject.description;
+      if (existingSubject.learningOutcomes.length < 1) {
+        existingSubject.learningOutcomes = subject.learningOutcomes;
+      }
+      fillForm(existingSubject);
+    } else {
+      fillForm(subject);
+    }
   } catch (error) {
     console.error('Error:', error);
   }

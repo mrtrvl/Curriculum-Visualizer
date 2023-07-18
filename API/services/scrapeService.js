@@ -17,8 +17,8 @@ const scrapeService = {
 
       if (ryhmHeader && ryhmHeader !== '') oisContent.oisName = ryhmHeader;
       if (yldaineC1 && yldaineC1 === 'Õppeaine kood') oisContent.code = yldaineC2;
-      if (yldaineC1 && yldaineC1 === 'Õppeaine nimetus eesti k') oisContent.name = yldaineC2;
-      if (yldaineC1 && yldaineC1 === 'Õppeaine maht EAP') oisContent.EAP = yldaineC2;
+      if (yldaineC1 && yldaineC1 === 'Õppeaine nimetus eesti k') oisContent.id = yldaineC2;
+      if (yldaineC1 && yldaineC1 === 'Õppeaine maht EAP') oisContent.volume = Number(yldaineC2);
       if (yldaineC1 && yldaineC1 === 'Kontrollivorm') oisContent.grading = yldaineC2;
       if (yldaineC1 && yldaineC1 === 'Õppeaine eesmärgid') oisContent.objectives = yldaineC2;
       if (yldaineC1 && yldaineC1 === 'Õppeaine sisu lühikirjeldus') oisContent.description = yldaineC2;
