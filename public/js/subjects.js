@@ -1,5 +1,3 @@
-
-
 const subjectsList = document.getElementById('subjects-list');
 if (subjectsList) {
   createSubjectsList();
@@ -65,6 +63,18 @@ async function createSubjectsTable() {
     tr.appendChild(td4);
     subjectsTable.appendChild(tr);
   });
+  let table = new DataTable('#subjects-table', {
+    "paging": false,
+    "columnDefs": [
+      { "orderable": false, "targets": 0 } // disable ordering on the first column (0-based index)
+    ],
+    "order": [[1, 'asc']] // initial order will be on the second column
+  });
+  table.on('order.dt search.dt', function () {
+    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+      cell.innerHTML = i + 1;
+    });
+  }).draw();
 }
 
 async function createSubjectsList() {
@@ -291,3 +301,4 @@ async function getSubjectFromOis() {
     console.error('Error:', error);
   }
 }
+
