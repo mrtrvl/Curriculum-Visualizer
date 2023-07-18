@@ -5,6 +5,11 @@ if (subjectsList) {
   createSubjectsList();
 }
 
+const subjectsTable = document.getElementById('subjects-table-body');
+if (subjectsTable) {
+  createSubjectsTable();
+}
+
 const addSubjectButton = document.getElementById('addSubjectButton');
 if (addSubjectButton) {
   addSubjectButton.addEventListener('click', async function (e) {
@@ -29,6 +34,39 @@ if (getSubjectButton) {
   });
 }
 
+async function createSubjectsTable() {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
+  const response = await axios.get(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`);
+  const subjects = response.data;
+  let orderNumber = 0;
+  subjects.forEach(subject => {
+    if (!subject.data.volume) return;
+    orderNumber++;
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+    const td3 = document.createElement('td');
+    const td4 = document.createElement('td');
+    const td5 = document.createElement('td');
+    const button = document.createElement('button');
+    button.textContent = 'Kustuta';
+    button.classList.add('btn', 'btn-danger', 'btn-sm', 'float-right');
+    button.addEventListener('click', function () {
+      deleteSubject(subject.uuid);
+    });
+    td1.textContent = orderNumber;
+    td2.textContent = `${subject.data.id}`;
+    td3.textContent = `${subject.data.category}`;
+    td4.textContent = `${subject.data.parent}`;
+    td5.appendChild(button);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    subjectsTable.appendChild(tr);
+  });
+}
+
 async function createSubjectsList() {
   const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
   const response = await axios.get(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`);
@@ -38,7 +76,7 @@ async function createSubjectsList() {
     if (!subject.data.volume) return;
     orderNumber++;
     const listItem = document.createElement('li');
-    listItem.textContent = `${orderNumber}. ${subject.data.id}`;
+    listItem.textContent = `${orderNumber}. ${subject.data.id} - ${subject.data.category}`;
     listItem.classList.add('list-group-item')
     subjectsList.appendChild(listItem);
   });
@@ -232,7 +270,7 @@ async function sendData(action) {
       });
       fetchDataAndRenderGraph(curriculumVersionUuid);
     } else {
-      alert('Please fill in all the fields!');
+      alert('Palun kontrolli üle, et kõik väljad oleksid täidetud.');
     }
   } catch (error) {
     console.error('Error:', error);

@@ -123,7 +123,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-4">
           <h3>Lisa uus õppeaine</h3>
           <div id="add-subject-form">
             <p id="uuid"></p>
@@ -192,9 +192,20 @@
             </button>
           </div>
         </div>
-        <div class="col-6">
-          <h3>Õppeainete nimekiri</h3>
-          <ul class="list-group" id="subjects-list"></ul>
+        <div class="col-8">
+          <!-- <ul class="list-group" id="subjects-list"></ul> -->
+          <table class="table table-striped" id="subjects-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nimetus</th>
+                <th scope="col">Moodul</th>
+                <th scope="col">Semester</th>
+              </tr>
+            </thead>
+            <tbody id="subjects-table-body">
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
