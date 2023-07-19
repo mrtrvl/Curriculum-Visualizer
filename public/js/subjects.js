@@ -32,6 +32,19 @@ if (getSubjectButton) {
   });
 }
 
+async function deleteSubject(uuid) {
+  const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
+  const confirmed = confirm(`Kas oled kindel, et soovid õppeaine ${name} kustutada?`);
+  if (!confirmed) return;
+  const response = await axios.delete(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${uuid}`);
+  if (response.status === 200) {
+    alert('Õppeaine kustutamine õnnestus!');
+    createSubjectsTable();
+  } else {
+    alert('Õppeaine kustutamine ebaõnnestus!');
+  }
+}
+
 async function createSubjectsTable() {
   const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
   const response = await axios.get(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`);
@@ -53,7 +66,7 @@ async function createSubjectsTable() {
     button.textContent = 'Kustuta';
     button.classList.add('btn', 'btn-danger', 'btn-sm', 'float-right');
     button.addEventListener('click', function () {
-      deleteSubject(subject.uuid);
+      deleteSubject(subject.data.uuid);
     });
     td1.textContent = orderNumber;
     td2.textContent = `${subject.data.id}`;
@@ -64,6 +77,7 @@ async function createSubjectsTable() {
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    tr.appendChild(td5);
     subjectsTable.appendChild(tr);
   });
   let table = new DataTable('#subjects-table', {
@@ -255,9 +269,11 @@ async function sendData() {
       subjectData.category &&
       subjectData.parent) {
       let response = null;
-      if (!subjectData.uuid) {
+      if (!subjectData.uuid || subjectData.uuid === 'undefined') {
+        console.log(subjectData.uuid, 'post');
         response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects`, subjectData);
       } else {
+        console.log(subjectData.uuid, 'put');
         response = await axios.put(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/${subjectData.uuid}`, subjectData);
       }
       console.log(response);

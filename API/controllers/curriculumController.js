@@ -67,6 +67,11 @@ const curriculumController = {
     await curriculumService.deleteCurriculum(version);
     return res.status(200).json();
   },
+  deleteSubject: async (req, res) => {
+    const { version, uuid } = req.params;
+    await subjectsService.deleteSubject(version, uuid);
+    return res.status(200).json();
+  },
 };
 
 module.exports = curriculumController;

@@ -10,9 +10,11 @@ const subjectsService = {
     if (!curriculum) {
       throw new Error(`Curriculum version ${curriculumVersionUuid} not found`);
     }
-    return curriculum.subjects;
+    const subjects = curriculum.subjects.filter((subject) => !subject.data.deleted);
+    return subjects;
   },
   addSubject: async (curriculumVersionUuid, subject) => {
+    console.log(curriculumVersionUuid, subject);
     const newSubject = {
       data: {
         ...subject,
@@ -54,6 +56,17 @@ const subjectsService = {
       },
       { new: true },
     );
+  },
+  deleteSubject: async (curriculumVersionUuid, uuid) => {
+    const deleted = await Curriculum.findOneAndUpdate(
+      { uuid: curriculumVersionUuid },
+      { $set: { 'subjects.$[elem].data.deleted': true } },
+      {
+        arrayFilters: [{ 'elem.data.uuid': uuid }],
+        new: true,
+      },
+    );
+    return deleted;
   },
 };
 

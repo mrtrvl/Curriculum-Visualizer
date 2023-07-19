@@ -33,6 +33,7 @@ const subjectSchema = new mongoose.Schema({
     objectives: String,
     learningOutcomes: mongoose.Schema.Types.Mixed,
     keywords: [String],
+    deleted: Boolean,
   },
   position: {
     x: Number,
