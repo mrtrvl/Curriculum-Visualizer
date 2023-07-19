@@ -1,6 +1,6 @@
 # Õppekava visualiseerimine
 
-See projekti eesmärk on õppekava visualiseerimise tööriista veebiversiooni loomine. Tööriist võimaldab õppekava visualiseerimist, muutmist ja salvestamist. Tööriistast võiks olla kasu õppekava loomisel, muutmisel, analüüsimisel, tutvustamisel jne.
+Selle projekti eesmärk on õppekava visualiseerimise tööriista veebiversiooni loomine. Tööriist võimaldab õppekava visualiseerimist, muutmist ja salvestamist. Tööriistast võiks olla kasu õppekava loomisel, muutmisel, analüüsimisel, tutvustamisel jne.
 
 Lisaks võiks olla sellest kasu õpilastel ja õppejõududel, kes saaksid õppekava visualiseerimise abil paremini aru õppekava ülesehitusest ja sellest, kuidas erinevad õppeained omavahel seotud on.
 
@@ -18,6 +18,8 @@ Lisaks võiks olla sellest kasu õpilastel ja õppejõududel, kes saaksid õppek
 - Seoseid ainete vahel saab luua ja kustutada
 - Õppeainetele saab lisada märksõnu, mis ei pruugi olla otseselt ainekaardiga seotud.
 - Graafil õppeainele vajutades tõstetakse esile kõik selle õppeaine seosed ja eeldused.
+- Esilhel olev otsing otsib ja tõstab esile märksõnade ja õppeainete nimede järgi.
+- Õppeainete lehel saab õppeaineid sorteerida ja filtreerida tabelis nähtavate väärtuste alusel.
 
 ## Õppekava ja ainete lisamine
 
@@ -55,6 +57,32 @@ Relations
  - tagret: string (Õppeaine nimi, mille poole seos suunatud)
  - recommended: string (Kas seos on soovituslik - näiteks "true") Boolean stringina tuleneb visualiseerimiseks kasutatavast raamistikust
 
+## Planeeritavad/võimalikud funktsionaalsused
+- Avalik vaade
+  - Ei saa midagi lisada, kustutada, muuta
+  - Mõeldud õppekava tutvustamiseks
+  - ...
+- Õpilase vaade
+  - Saab märkida õppeaineid tehtuks
+  - Saab peita õppeaineid, mida ei soovi õppida
+  - Saab lisada vabaaineid
+  - ...
+- Sisselogimine
+  - Vajalik eristamaks õpilast/õppejõudu/administraatorit/külalist
+  - Isikustamiseks
+  - ...
+- Otsingu täiustamine
+ - Otsimine õppeainete kirjeldustest, õpiväljunditest jne
+ - ...
+- Õpilaste lisamine õppekavale
+  - ...
+- Õppeainete täiendamine lisainfoga
+  - e-kursuse asukoht
+  - õppejõud
+  - ainekaardi asukoht?
+  - ...
+- Integratsioon tunniplaaniga?
+  - ...
 ## Kommentaarid ja ettepanekud
 
 ... võib saata e-mailile: mrt@tlu.ee
