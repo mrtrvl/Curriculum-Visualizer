@@ -10,9 +10,10 @@ const curriculumController = {
   },
   getCurriculums: async (req, res) => {
     const { version } = req.query;
+    const { deleted } = req.params;
     let curriculums;
     if (!version) {
-      curriculums = await curriculumService.getCurriculums();
+      curriculums = await curriculumService.getCurriculums(deleted);
     } else {
       curriculums = await curriculumService.getCurriculum(version);
     }
@@ -56,7 +57,16 @@ const curriculumController = {
     const removedRelation = await relationsService.removeRelation(version, relationId);
     return res.status(200).json(removedRelation);
   },
-
+  copyCurriculum: async (req, res) => {
+    const { uuid, version } = req.body;
+    const newCurriculum = await curriculumService.copyCurriculum(uuid, version);
+    return res.status(201).json(newCurriculum);
+  },
+  deleteCurriculum: async (req, res) => {
+    const { version } = req.params;
+    await curriculumService.deleteCurriculum(version);
+    return res.status(200).json();
+  },
 };
 
 module.exports = curriculumController;

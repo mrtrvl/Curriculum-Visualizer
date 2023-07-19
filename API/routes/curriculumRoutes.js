@@ -11,6 +11,8 @@ curriculumRouter
   .post('/', curriculumController.addCurriculum)
   .put('/:version/subjects/:uuid', curriculumController.updateSubject)
   .post('/:version/relations', curriculumController.addSubjectsRelation)
-  .delete('/:version/relations/:relationId', curriculumController.deleteSubjectsRelation);
+  .delete('/:version/relations/:relationId', curriculumController.deleteSubjectsRelation)
+  .post('/copy', curriculumController.copyCurriculum)
+  .delete('/:version', curriculumController.deleteCurriculum);
 
 module.exports = curriculumRouter;

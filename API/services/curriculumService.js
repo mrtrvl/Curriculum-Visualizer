@@ -4,8 +4,17 @@ const { v4: uuidv4 } = require('uuid');
 const Curriculum = require('../models/curriculumModel');
 
 const curriculumService = {
-  getCurriculums: async () => {
-    const allCurriculums = await Curriculum.find({}).sort('version');
+  getCurriculums: async (deleted) => {
+    if (deleted) {
+      const allCurriculums = await Curriculum.find({ deleted: true }).sort('version');
+      return allCurriculums;
+    }
+    const allCurriculums = await Curriculum.find({
+      $or: [
+        { deleted: false },
+        { deleted: { $exists: false } },
+      ],
+    }).sort('version');
     return allCurriculums;
   },
   getCurriculum: async (version) => {
@@ -16,7 +25,14 @@ const curriculumService = {
     return curriculumVersion;
   },
   getVersions: async () => {
-    const versions = await Curriculum.find({}).select({ uuid: 1, version: 1, _id: 0 }).sort('version');
+    const versions = await Curriculum.find({
+      $or: [
+        { deleted: false },
+        { deleted: { $exists: false } },
+      ],
+    }).select({
+      uuid: 1, version: 1, name: 1, _id: 0,
+    }).sort('version');
     return versions;
   },
   addCurriculum: async (curriculum) => {
@@ -38,6 +54,29 @@ const curriculumService = {
     };
     const createdCurriculum = await Curriculum.create(newCurriculum);
     return createdCurriculum;
+  },
+  copyCurriculum: async (curriculumVersionUuid, newVersion) => {
+    const curriculum = await Curriculum.findOne({ uuid: curriculumVersionUuid });
+    if (!curriculum) {
+      throw new Error(`Curriculum version ${curriculumVersionUuid} not found`);
+    }
+    const newCurriculum = {
+      ...curriculum.toObject(),
+      version: newVersion,
+      uuid: uuidv4(),
+    };
+    // eslint-disable-next-line no-underscore-dangle
+    delete newCurriculum._id;
+    const createdCurriculum = await Curriculum.create(newCurriculum);
+    return createdCurriculum;
+  },
+  deleteCurriculum: async (curriculumVersionUuid) => {
+    const deleted = await Curriculum.findOneAndUpdate(
+      { uuid: curriculumVersionUuid },
+      { deleted: true },
+      { new: true },
+    );
+    return deleted;
   },
 };
 

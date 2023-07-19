@@ -48,6 +48,7 @@ const curriculumSchema = new mongoose.Schema({
   relations: [relationSchema],
   learningOutcomes: [learningOutcomeSchema],
   topics: [topicSchema],
+  deleted: Boolean,
 });
 
 const Curriculum = mongoose.model('Curriculum', curriculumSchema);
