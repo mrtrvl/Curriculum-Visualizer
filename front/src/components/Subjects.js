@@ -219,8 +219,8 @@ const Subjects = () => {
               required
             >
               <option value="">Vali moodul</option>
-              {modules.map((module) => (
-                <option key={module.uuid} value={module.name}>
+              {modules.map((module, index) => (
+                <option key={index} value={module.name}>
                   {module.name}
                 </option>
               ))}
@@ -269,7 +269,7 @@ const Subjects = () => {
             </thead>
             <tbody>
               {subjects.map((subject, index) => (
-                <tr key={subject.uuid} onClick={() => fillForm(subject.data)}>
+                <tr key={index} onClick={() => fillForm(subject.data)}>
                   <td>{index + 1}</td>
                   <td>{subject.data.id}</td>
                   <td>{subject.data.category}</td>

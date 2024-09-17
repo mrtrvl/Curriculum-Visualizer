@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import modulesService from '../services/modulesService'; // Import the service
+import modulesService from '../services/modulesService';
 
 const Modules = () => {
   const [modules, setModules] = useState([]);
-  const [moduleName, setModuleName] = useState('');
-  const [editingModuleId, setEditingModuleId] = useState(null); // Track the module being edited
-  const [editedModuleName, setEditedModuleName] = useState(''); // Track the new name for the module being edited
+  const [formData, setFormData] = useState({
+    uuid: '',
+    name: '',
+  });
 
-  // Fetch the modules when the component loads
   useEffect(() => {
     fetchModules();
   }, []);
 
-  // Function to fetch modules and update the state
+  // Fetch all modules
   const fetchModules = async () => {
     try {
       const modules = await modulesService.getModules();
@@ -22,59 +22,54 @@ const Modules = () => {
     }
   };
 
-  // Function to handle adding a new module
-  const handleAddModule = async (e) => {
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
+
+  // Add or update module
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    if (!moduleName.trim()) {
-      alert('Module name is required!');
-      return;
-    }
-
-    const module = { name: moduleName };
     try {
-      const newModule = await modulesService.addModule(module);
-      setModuleName(''); // Clear input after successful addition
-      setModules([...modules, newModule]); // Add new module to the list
+      if (formData.name) {
+        await modulesService.addModule(formData);
+        fetchModules();
+        clearForm();
+      } else {
+        alert('Please fill in the module name');
+      }
     } catch (error) {
-      alert('Error adding module');
-      console.error('Error adding module:', error);
+      console.error('Error saving module:', error);
     }
   };
 
-  // Function to handle deleting a module
-  const handleDeleteModule = async (id) => {
+  // Fill form with selected module data for editing
+  const fillForm = (module) => {
+    setFormData({
+      uuid: module.uuid,
+      name: module.name,
+    });
+  };
+
+  // Clear the form after submit or cancel
+  const clearForm = () => {
+    setFormData({
+      uuid: '',
+      name: '',
+    });
+  };
+
+  // Delete module
+  const handleDeleteModule = async (uuid) => {
     try {
-      await modulesService.deleteModule(id);
-      setModules(modules.filter(module => module.uuid !== id)); // Remove the deleted module from the list
+      await modulesService.deleteModule(uuid);
+      fetchModules();
     } catch (error) {
-      alert('Error deleting module');
       console.error('Error deleting module:', error);
-    }
-  };
-
-  // Function to handle editing a module
-  const handleEditModule = (module) => {
-    setEditingModuleId(module.uuid); // Set the module ID that is being edited
-    setEditedModuleName(module.name); // Set the current name of the module in the input
-  };
-
-  // Function to save the edited module
-  const handleSaveModule = async (id) => {
-    if (!editedModuleName.trim()) {
-      alert('Module name is required!');
-      return;
-    }
-
-    const updatedModule = { uuid: id, name: editedModuleName };
-
-    try {
-      const updated = await modulesService.updateModule(updatedModule);
-      setModules(modules.map(module => (module.uuid === id ? updated : module))); // Update the module in the list
-      setEditingModuleId(null); // Exit edit mode
-    } catch (error) {
-      alert('Error updating module');
-      console.error('Error updating module:', error);
     }
   };
 
@@ -85,68 +80,68 @@ const Modules = () => {
           <h1>Moodulid</h1>
         </div>
       </div>
-
       <div className="row">
-        <div className="col-6">
-          <h3>Lisa uus</h3>
-          <form onSubmit={handleAddModule}>
+        <div className="col-4">
+          <h3>Lisa uus või uuenda</h3>
+          <form onSubmit={handleFormSubmit}>
+            <label htmlFor="name">Mooduli nimi</label>
             <input
-              className="form-control me-2"
               type="text"
-              id="module-name"
+              id="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="form-control"
               placeholder="Mooduli nimi"
-              value={moduleName}
-              onChange={(e) => setModuleName(e.target.value)}
               required
             />
-            <button className="btn btn-primary mt-2" type="submit">Lisa</button>
+            <button type="submit" className="btn btn-primary mt-2">
+              Salvesta
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary mt-2 ms-2"
+              onClick={clearForm}
+            >
+              Tühjenda
+            </button>
           </form>
         </div>
-
-        <div className="col-6">
+        <div className="col-8">
           <h3>Nimekiri</h3>
-          <ul className="list-group" id="modules-list">
-            {modules.map(module => (
-              <li key={module.uuid} className="list-group-item d-flex justify-content-between align-items-center">
-                {editingModuleId === module.uuid ? (
-                  <input
-                    className="form-control me-2"
-                    type="text"
-                    value={editedModuleName}
-                    onChange={(e) => setEditedModuleName(e.target.value)}
-                  />
-                ) : (
-                  <span>{module.name}</span>
-                )}
-
-                <div className="btn-group" role="group">
-                  {editingModuleId === module.uuid ? (
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Mooduli nimi</th>
+                <th>Muuda</th>
+                <th>Kustuta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modules.map((module, index) => (
+                <tr key={index} onClick={() => fillForm(module)}>
+                  <td>{index + 1}</td>
+                  <td>{module.name}</td>
+                  <td>
                     <button
-                      className="btn btn-success btn-sm"
-                      onClick={() => handleSaveModule(module.uuid)}
+                      className="btn btn-warning btn-sm"
+                      onClick={() => fillForm(module)}
                     >
-                      Save
+                      Muuda
                     </button>
-                  ) : (
-                    <>
-                      <button
-                        className="btn btn-warning btn-sm"
-                        onClick={() => handleEditModule(module)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm ms-2" // Adds margin between Edit and Delete
-                        onClick={() => handleDeleteModule(module.uuid)}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDeleteModule(module.uuid)}
+                    >
+                      Kustuta
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -1,92 +1,153 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, ListGroup } from 'react-bootstrap';
 import curriculumService from '../services/curriculumService';
-import Graph from './Graph';
-import './Curriculums.css'; // Optional: For additional custom styles
 
 const Curriculums = () => {
-  const [curriculumVersions, setCurriculumVersions] = useState([]);
-  const [selectedVersion, setSelectedVersion] = useState(localStorage.getItem('curriculumVersionUuid') || '');
-  const [curriculum, setCurriculum] = useState(null);
+  const [curriculums, setCurriculums] = useState([]);
+  const [newCurriculum, setNewCurriculum] = useState({ name: '', version: '', semesterCount: '' });
+  const [selectedVersion, setSelectedVersion] = useState('');
 
   useEffect(() => {
-    async function fetchCurriculumVersions() {
-      const versions = await curriculumService.getCurriculumVersions();
-      setCurriculumVersions(versions);
+    fetchCurriculums();
+    updateVersionNameOnMenu();
+  }, []);
 
-      if (selectedVersion) {
-        fetchCurriculum(selectedVersion);
-      }
+  const fetchCurriculums = async () => {
+    const data = await curriculumService.getCurriculumVersions();
+    setCurriculums(data);
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setNewCurriculum((prevCurriculum) => ({
+      ...prevCurriculum,
+      [id]: value,
+    }));
+  };
+
+  const handleAddCurriculum = async (e) => {
+    e.preventDefault();
+    if (!newCurriculum.name || !newCurriculum.version || !newCurriculum.semesterCount) {
+      alert('Please fill in all fields');
+      return;
     }
 
-    fetchCurriculumVersions();
-  }, [selectedVersion]);
-
-  async function fetchCurriculum(versionId) {
     try {
-      const curriculumData = await curriculumService.getCurriculum(versionId);
-      setCurriculum(curriculumData);
+      await curriculumService.addCurriculum(newCurriculum);
+      alert('Curriculum added successfully');
+      setNewCurriculum({ name: '', version: '', semesterCount: '' });
+      fetchCurriculums();
     } catch (error) {
-      console.error('Error fetching curriculum:', error);
+      alert('Failed to add curriculum');
     }
-  }
+  };
 
-  const handleChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedVersion(selectedValue);
-    localStorage.setItem('curriculumVersionUuid', selectedValue); // Store selected version in localStorage
-    fetchCurriculum(selectedValue);
+  const handleDeleteCurriculum = async (uuid, version) => {
+    const confirmed = window.confirm(`Are you sure you want to delete the curriculum ${version}?`);
+    if (!confirmed) return;
+
+    try {
+      await curriculumService.deleteCurriculum(uuid);
+      alert('Curriculum deleted successfully');
+      fetchCurriculums();
+    } catch (error) {
+      alert('Failed to delete curriculum');
+    }
+  };
+
+  const handleCopyCurriculum = async (uuid, version) => {
+    const newVersion = prompt('Enter a new version name', version);
+    if (!newVersion || newVersion === version) {
+      alert('New version must differ from the existing one!');
+      return;
+    }
+
+    try {
+      await curriculumService.copyCurriculum(uuid, newVersion);
+      alert('Curriculum version copied successfully');
+      fetchCurriculums();
+    } catch (error) {
+      alert('Failed to copy curriculum');
+    }
+  };
+
+  const updateVersionNameOnMenu = () => {
+    const versionName = localStorage.getItem('curriculumVersion');
+    if (versionName) {
+      setSelectedVersion(versionName);
+    }
   };
 
   return (
     <Container fluid>
       <Row className="mt-4">
-        <Col md={3}>
-          <Card>
-            <Card.Header>
-              <h2>Õppekavad</h2>
-            </Card.Header>
-            <Card.Body>
-              <Form.Group controlId="curriculum-select">
-                <Form.Label><strong>Select Curriculum Version</strong></Form.Label>
-                <Form.Control
-                  as="select"
-                  value={selectedVersion}
-                  onChange={handleChange}
-                  className="custom-select"
-                  style={{
-                    backgroundColor: '#f8f9fa',
-                    border: '2px solid #007bff',
-                    borderRadius: '4px',
-                    padding: '10px',
-                    fontSize: '1.1rem',
-                    color: '#007bff',
-                    appearance: 'none',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <option value="" disabled>Select a version</option>
-                  {curriculumVersions.map((version) => (
-                    <option key={version.uuid} value={version.uuid}>
-                      {version.version}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-            </Card.Body>
-          </Card>
+        <Col md={6}>
+          <h3>Lisa uus õppekava versioon</h3>
+          <Form onSubmit={handleAddCurriculum}>
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="text"
+                id="version"
+                placeholder="Curriculum Code"
+                value={newCurriculum.version}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="text"
+                id="name"
+                placeholder="Curriculum Name"
+                value={newCurriculum.name}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="number"
+                id="semesterCount"
+                placeholder="Number of Semesters"
+                value={newCurriculum.semesterCount}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Lisa uus õppekava
+            </Button>
+          </Form>
         </Col>
-        <Col md={9}>
-          <Card>
-            <Card.Header>
-              <h2>Graph</h2>
-            </Card.Header>
-            <Card.Body>
-              {curriculum && (
-                <Graph subjects={curriculum.subjects} relations={curriculum.relations} />
-              )}
-            </Card.Body>
-          </Card>
+
+        <Col md={6}>
+          <h3>Õppekavade nimekiri</h3>
+          <ListGroup>
+            {curriculums.map((curriculum) => (
+              <ListGroup.Item
+                key={curriculum.uuid}
+                className="d-flex justify-content-between align-items-center"
+              >
+                {curriculum.version} - {curriculum.name}
+                <div>
+                  <Button
+                    variant="secondary"
+                    className="btn-sm ml-2"
+                    onClick={() => handleCopyCurriculum(curriculum.uuid, curriculum.version)}
+                  >
+                    Copy
+                  </Button>
+                  <Button
+                    variant="danger"
+                    className="btn-sm ml-2"
+                    onClick={() => handleDeleteCurriculum(curriculum.uuid, curriculum.version)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
         </Col>
       </Row>
     </Container>

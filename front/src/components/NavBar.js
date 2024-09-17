@@ -14,7 +14,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Avaleht</Nav.Link>
+            <Nav.Link href="/">Avaleht</Nav.Link>
             <Nav.Link href="/curriculums">Õppekavad</Nav.Link>
             <Nav.Link href="/modules">Moodulid</Nav.Link>
             <Nav.Link href="/subjects">Õppeained</Nav.Link>
