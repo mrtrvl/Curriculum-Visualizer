@@ -8,34 +8,43 @@ const Home = () => {
   const [curriculumVersions, setCurriculumVersions] = useState([]);
   const [selectedVersion, setSelectedVersion] = useState(localStorage.getItem('curriculumVersionUuid') || '');
   const [curriculum, setCurriculum] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState(null);
 
   useEffect(() => {
     async function fetchCurriculumVersions() {
-      const versions = await curriculumService.getCurriculumVersions();
-      setCurriculumVersions(versions);
+      try {
+        const versions = await curriculumService.getCurriculumVersions();
+        setCurriculumVersions(versions);
 
-      if (selectedVersion) {
-        fetchCurriculum(selectedVersion);
+        if (selectedVersion) {
+          fetchCurriculum(selectedVersion);
+        }
+      } catch (error) {
+        console.error('Error fetching curriculum versions:', error);
       }
     }
 
     fetchCurriculumVersions();
   }, [selectedVersion]);
 
-  async function fetchCurriculum(versionId) {
+  const fetchCurriculum = async (versionId) => {
     try {
       const curriculumData = await curriculumService.getCurriculum(versionId);
       setCurriculum(curriculumData);
     } catch (error) {
       console.error('Error fetching curriculum:', error);
     }
-  }
+  };
 
   const handleChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedVersion(selectedValue);
     localStorage.setItem('curriculumVersionUuid', selectedValue); // Store selected version in localStorage
     fetchCurriculum(selectedValue);
+  };
+
+  const handleSubjectSelect = (subjectData) => {
+    setSelectedSubject(subjectData); // Set selected subject when a node is clicked
   };
 
   return (
@@ -54,27 +63,33 @@ const Home = () => {
                   value={selectedVersion}
                   onChange={handleChange}
                   className="custom-select"
-                  style={{
-                    backgroundColor: '#f8f9fa',
-                    border: '2px solid #007bff',
-                    borderRadius: '4px',
-                    padding: '10px',
-                    fontSize: '1.1rem',
-                    color: '#007bff',
-                    appearance: 'none',
-                    cursor: 'pointer'
-                  }}
                 >
                   <option value="" disabled>Select a version</option>
                   {curriculumVersions.map((version) => (
                     <option key={version.uuid} value={version.uuid}>
-                      {version.version}
+                      {version.version} - {version.name}
                     </option>
                   ))}
                 </Form.Control>
               </Form.Group>
             </Card.Body>
           </Card>
+          {selectedSubject && (
+            <Card className="mt-4">
+              <Card.Header><h3>Subject Details</h3></Card.Header>
+              <Card.Body>
+                <p><strong>ID:</strong> {selectedSubject.id}</p>
+                <p><strong>Code:</strong> {selectedSubject.code}</p>
+                <p><strong>Volume:</strong> {selectedSubject.volume}</p>
+                <p><strong>Mandatory:</strong> {selectedSubject.mandatory === 'true' ? 'Yes' : 'No'}</p>
+                <p><strong>Category:</strong> {selectedSubject.category}</p>
+                <p><strong>Parent:</strong> {selectedSubject.parent}</p>
+                <p><strong>Grading:</strong> {selectedSubject.grading}</p>
+                <p><strong>Objectives:</strong> {selectedSubject.objectives}</p>
+                <p><strong>Description:</strong> {selectedSubject.description}</p>
+              </Card.Body>
+            </Card>
+          )}
         </Col>
         <Col md={9}>
           <Card>
@@ -82,8 +97,10 @@ const Home = () => {
               <h2>Graph</h2>
             </Card.Header>
             <Card.Body>
-              {curriculum && (
-                <Graph subjects={curriculum.subjects} relations={curriculum.relations} />
+              {curriculum ? (
+                <Graph subjects={curriculum.subjects} relations={curriculum.relations} onSubjectSelect={handleSubjectSelect} />
+              ) : (
+                <p>Please select a curriculum version to display the graph.</p>
               )}
             </Card.Body>
           </Card>

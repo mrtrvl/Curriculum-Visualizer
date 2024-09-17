@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import cytoscape from 'cytoscape';
 import graphService from '../services/graphService';
 import './Graph.css';
 
-const Graph = ({ subjects, relations }) => {
+const Graph = ({ subjects, relations, onSubjectSelect }) => {
   let cy;
+  const [addRelationMode, setAddRelationMode] = useState(false);
+  const [removeRelationMode, setRemoveRelationMode] = useState(false);
+  let relation = [];
 
   useEffect(() => {
     const cyContainer = document.getElementById('cy');
@@ -51,24 +54,6 @@ const Graph = ({ subjects, relations }) => {
           }
         },
         {
-          selector: 'node[category = "Praktika"]',
-          style: {
-            'background-color': 'orange',
-          }
-        },
-        {
-          selector: 'node[category = "Üleülikoolilised ained"]',
-          style: {
-            'background-color': 'lightblue',
-          }
-        },
-        {
-          selector: 'node[category = "Erialane inglise keel"]',
-          style: {
-            'background-color': 'darkblue',
-          }
-        },
-        {
           selector: 'edge',
           style: {
             'width': 3,
@@ -108,21 +93,32 @@ const Graph = ({ subjects, relations }) => {
       },
     });
 
+    // Event: When a node is clicked
     cy.on('tap', 'node', function (evt) {
       const node = evt.target;
+      onSubjectSelect(node.data());
       cy.elements().removeClass('highlighted');
       cy.elements().removeClass('highlighted-node');
       node.predecessors().addClass('highlighted');
       if (!node.isParent()) {
         node.addClass('highlighted-node');
       }
+      if (addRelationMode) {
+        addNewRelation(node.data('id'));
+      }
     });
 
+    // Event: When an edge is clicked
     cy.on('tap', 'edge', function (evt) {
       const edge = evt.target;
-      const approve = window.confirm('Are you sure you want to remove this relation?');
-      if (approve) {
-        edge.remove();
+      if (removeRelationMode) {
+        const approve = window.confirm('Are you sure you want to remove this relation?');
+        if (approve) {
+          graphService.deleteRelation(edge.data('id')).then(() => {
+            edge.remove();
+            setRemoveRelationMode(false);
+          });
+        }
       }
     });
 
@@ -133,8 +129,7 @@ const Graph = ({ subjects, relations }) => {
         children.forEach(child => {
           const childPosition = child.position();
           const childData = child.data();
-          const { uuid } = childData;
-          graphService.updatePosition(uuid, childPosition);
+          graphService.updatePosition(childData.uuid, childPosition);
         });
       } else {
         const nodePosition = node.position();
@@ -167,12 +162,41 @@ const Graph = ({ subjects, relations }) => {
     };
   }, [subjects, relations]);
 
+  const addNewRelation = async (id) => {
+    relation.push(id);
+    if (relation.length === 2) {
+      const recommended = document.getElementById('recommended').checked.toString();
+      await graphService.addRelation(relation, recommended);
+      relation = [];
+      setAddRelationMode(false);
+      cy.elements().removeClass('highlighted');
+    }
+  };
+
   function resizeGraph() {
     document.getElementById('cy-container').style.height = `${window.innerHeight - 130}px`;
     cy.resize();
   }
 
-  return <div id="cy-container" style={{ width: '100%', height: '800px' }}><div id="cy"></div></div>;
+  return (
+    <>
+      <div id="cy-container" style={{ width: '100%', height: '800px' }}>
+        <div id="cy"></div>
+      </div>
+      <div className="relation-buttons">
+        <div className="form-check">
+          <input type="checkbox" className="form-check-input" id="recommended" />
+          <label className="form-check-label" htmlFor="recommended">Recommended Relation</label>
+        </div>
+        <button className="btn btn-primary" onClick={() => setAddRelationMode(true)}>
+          Add Relation
+        </button>
+        <button className="btn btn-danger" onClick={() => setRemoveRelationMode(true)}>
+          Remove Relation
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default Graph;

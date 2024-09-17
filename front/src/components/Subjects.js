@@ -26,7 +26,18 @@ const Subjects = () => {
       fetchSubjects();
       fetchModules();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [curriculumVersionUuid]);
+
+  const handleGetSubjectFromOis = async () => {
+    try {
+      const subjectData = await subjectsService.getSubjectFromOis(formData.code);
+      setFormData({ ...formData, ...subjectData });
+    } catch (error) {
+      console.error('Error getting subject from ÕIS:', error);
+    }
+  };
+
 
   const fetchSubjects = async () => {
     try {
@@ -54,26 +65,6 @@ const Subjects = () => {
     });
   };
 
-  const handleLearningOutcomesChange = (index, value) => {
-    const updatedLearningOutcomes = [...formData.learningOutcomes];
-    updatedLearningOutcomes[index] = value;
-    setFormData({ ...formData, learningOutcomes: updatedLearningOutcomes });
-  };
-
-  const addLearningOutcome = () => {
-    setFormData({ ...formData, learningOutcomes: [...formData.learningOutcomes, ''] });
-  };
-
-  const handleKeywordChange = (index, value) => {
-    const updatedKeywords = [...formData.keywords];
-    updatedKeywords[index] = value;
-    setFormData({ ...formData, keywords: updatedKeywords });
-  };
-
-  const addKeyword = () => {
-    setFormData({ ...formData, keywords: [...formData.keywords, ''] });
-  };
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -85,21 +76,13 @@ const Subjects = () => {
     }
   };
 
-  const handleDeleteSubject = async (uuid) => {
+  const handleDeleteSubject = async (uuid, e) => {
+    e.stopPropagation(); // Prevent the row click event from firing
     try {
       await subjectsService.deleteSubject(curriculumVersionUuid, uuid);
       fetchSubjects();
     } catch (error) {
       console.error('Error deleting subject:', error);
-    }
-  };
-
-  const handleGetSubjectFromOis = async () => {
-    try {
-      const subjectData = await subjectsService.getSubjectFromOis(formData.code);
-      setFormData({ ...formData, ...subjectData });
-    } catch (error) {
-      console.error('Error getting subject from ÕIS:', error);
     }
   };
 
@@ -158,7 +141,7 @@ const Subjects = () => {
               placeholder="Õppeaine kood"
               required
             />
-            <button type="button" className="btn btn-primary btn-sm mt-2 mb-2" onClick={handleGetSubjectFromOis}>
+            <button type="button" className="btn btn-primary btn-sm mt-2 mb-2" onClick={() => handleGetSubjectFromOis()}>
               Võta andmed ÕISist
             </button>
             <br />
@@ -277,7 +260,7 @@ const Subjects = () => {
                   <td>
                     <button
                       className="btn btn-danger btn-sm"
-                      onClick={() => handleDeleteSubject(subject.data.uuid)}
+                      onClick={(e) => handleDeleteSubject(subject.data.uuid, e)}
                     >
                       Kustuta
                     </button>
