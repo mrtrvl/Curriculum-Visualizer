@@ -1,0 +1,10 @@
+.custom-select {
+  background-color: #f8f9fa;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #007bff;
+  appearance: none;
+  cursor: pointer;
+}

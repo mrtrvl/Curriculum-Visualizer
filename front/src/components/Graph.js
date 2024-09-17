@@ -126,9 +126,8 @@ const Graph = ({ subjects, relations }) => {
       }
     });
 
-    cy.on('drag', 'node', function (evt) {
+    cy.on('free', 'node', function (evt) {
       const node = evt.target;
-
       if (node.isParent()) {
         const children = node.children();
         children.forEach(child => {
@@ -142,6 +141,22 @@ const Graph = ({ subjects, relations }) => {
         const nodeUuid = node.data('uuid');
         graphService.updatePosition(nodeUuid, nodePosition);
       }
+    });
+
+    cy.elements('node:parent').forEach(function (ele) {
+      let volumeSumMandatory = 0;
+      let volumeSumOptional = 0;
+      let children = ele.children();
+      children.each(function (child) {
+        if (child.data('mandatory') === 'true') {
+          volumeSumMandatory += child.data('volume');
+        } else {
+          volumeSumOptional += child.data('volume');
+        }
+      });
+      ele.data('volumeSumMandatory', volumeSumMandatory);
+      ele.data('volumeSumOptional', volumeSumOptional);
+      ele.style('label', `${ele.data('id')} (${volumeSumMandatory}/${volumeSumOptional})`);
     });
 
     window.addEventListener('resize', resizeGraph);

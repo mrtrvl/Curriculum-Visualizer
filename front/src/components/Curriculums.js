@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import curriculumService from '../services/curriculumService';
 import Graph from './Graph';
+import './Curriculums.css'; // Optional: For additional custom styles
 
 const Curriculums = () => {
   const [curriculumVersions, setCurriculumVersions] = useState([]);
@@ -47,8 +48,23 @@ const Curriculums = () => {
             </Card.Header>
             <Card.Body>
               <Form.Group controlId="curriculum-select">
-                <Form.Label>Select Curriculum Version</Form.Label>
-                <Form.Control as="select" value={selectedVersion} onChange={handleChange}>
+                <Form.Label><strong>Select Curriculum Version</strong></Form.Label>
+                <Form.Control
+                  as="select"
+                  value={selectedVersion}
+                  onChange={handleChange}
+                  className="custom-select"
+                  style={{
+                    backgroundColor: '#f8f9fa',
+                    border: '2px solid #007bff',
+                    borderRadius: '4px',
+                    padding: '10px',
+                    fontSize: '1.1rem',
+                    color: '#007bff',
+                    appearance: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
                   <option value="" disabled>Select a version</option>
                   {curriculumVersions.map((version) => (
                     <option key={version.uuid} value={version.uuid}>

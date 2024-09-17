@@ -3,10 +3,9 @@ import config from '../config';
 
 const { apiUrl } = config;
 
-const updatePosition = async (id, position) => {
+const updatePosition = async (uuid, position) => {
   const curriculumVersionUuid = localStorage.getItem('curriculumVersionUuid');
-  const response = await axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/position`, { id, position });
-  console.log(response);
+  axios.post(`${apiUrl}/curriculums/${curriculumVersionUuid}/subjects/position`, { uuid, position });
 };
 
 const graphService = {
